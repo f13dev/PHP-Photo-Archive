@@ -1,1 +1,1 @@
-# PHP-Photo-Archive
+# PHP Photo Archive
