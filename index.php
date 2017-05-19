@@ -22,12 +22,12 @@ require_once('inc/settings.php');
 
   </section>
   <section id="imageBrowser">
+
+  </section>
+  <footer>
     <div class="center">
       Copyright &copy; <?php // get copyright holder ?> (<?php echo date("Y"); ?>) - Powered by: <a href="http://f13dev.com">PHP Photo Archive</a>
     </div>
-  </section>
-  <footer>
-
   </footer>
 </body>
 </html>
