@@ -6,6 +6,9 @@ require_once('inc/settings.php');
 <html>
 <head>
   <title></title>
+  <!-- Load stylesheets -->
+  <link rel="stylesheet" href="skin/<?php echo CSS_MAIN; ?>">
+  <link rel="stylesheet" href="skin/<?php echo CSS_MOBILE; ?>">
 </head>
 <body>
   <header>
