@@ -1,8 +1,8 @@
 body {
   margin: 0;
   padding: 0;
-  margin-top: 5em;
-  margin-bottom: 1.5em;
+  margin-top: 5.2em;
+  margin-bottom: 2.2em;
 }
 
 header {
@@ -13,6 +13,7 @@ header {
   height: 5em;
   background: #666;
   color: #eee;
+  border-bottom: 0.2em solid #000;
 }
 
 header > h1 {
@@ -37,6 +38,7 @@ footer {
   background: #666;
   color: #eee;
   line-height: 2em;
+  border-top: 0.2em solid #000;
 }
 
 footer a {

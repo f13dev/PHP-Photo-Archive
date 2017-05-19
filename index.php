@@ -6,6 +6,7 @@ require_once('inc/settings.php');
 <html>
 <head>
   <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Load stylesheets -->
   <link rel="stylesheet" href="skin/<?php echo CSS_MAIN; ?>">
   <link rel="stylesheet" href="skin/<?php echo CSS_MOBILE; ?>">
@@ -22,7 +23,7 @@ require_once('inc/settings.php');
 
   </section>
   <section id="imageBrowser">
-
+    Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />Lots of content<br />
   </section>
   <footer>
     <div class="center">
