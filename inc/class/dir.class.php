@@ -24,9 +24,8 @@ class Dir
     echo $this->dir . '<br />';
     foreach (glob(ARCHIVE_MAIN . $this->dir . '/*', GLOB_ONLYDIR) as $eachDir)
     {
-      $eachDir = str_replace('//','/',$eachDir);
-      $eachDir = str_replace(ARCHIVE_MAIN,'',$eachDir);
-      array_push($this->subDir, $eachDir);
+      $path = ltrim($this->dir . '/' . basename($eachDir), '/');
+      $this->subDir[basename($eachDir)] = $path;
     }
   }
 
@@ -39,7 +38,7 @@ class Dir
   {
 
   }
-  
+
   function getSubDir()
   {
     return $this->subDir;

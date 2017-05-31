@@ -36,7 +36,14 @@ catch (Exception $e)
     </div>
   </header>
   <section id="fileManager">
-    <?php print_r($theDir->getSubDir()); ?>
+    <?php
+    foreach ($theDir->getSubDir() as $key => $value)
+    {
+      echo '<a href="?dir=' . $value . '">' . $key . '</a>';
+    }
+
+    print_r($theDir->getSubDir());
+    ?>
   </section>
   <section id="imageBrowser">
 
