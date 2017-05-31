@@ -37,6 +37,11 @@ catch (Exception $e)
   </header>
   <section id="fileManager">
     <?php
+    if ($theDir->getDir() != null)
+    {
+      echo '<a href="?dir=' . $theDir->getParentDir() . '">Parent</a>';
+    }
+
     foreach ($theDir->getSubDir() as $key => $value)
     {
       echo '<a href="?dir=' . $value . '">' . $key . '</a>';

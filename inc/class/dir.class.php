@@ -9,7 +9,7 @@ class Dir
   function Dir($theDir) {
     if (is_dir(ARCHIVE_MAIN . $theDir))
     {
-      $this->dir = $theDir;
+      $this->dir = ltrim($theDir, '/');
       $this->setSubDir();
       $this->setFiles();
     }
@@ -34,9 +34,24 @@ class Dir
 
   }
 
+  function getDir()
+  {
+    return $this->dir;
+  }
+
   function getParentDir()
   {
-
+    if ($this->dir == '')
+    {
+      // This is the root directory
+      return null;
+    }
+    else
+    {
+      $last = end(explode('/',$this->dir));
+      $parent = rtrim(str_replace($last,'',$this->dir), '/');
+      return $parent;
+    }
   }
 
   function getSubDir()
