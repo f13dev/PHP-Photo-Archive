@@ -4,16 +4,17 @@ require_once('inc/settings.php');
 require_once('inc/class/dir.class.php');
 
 // Get the dir to view
-if (isset($_GET['dir']))
-{
-  $dir = $_GET['dir'];
-}
-else
-{
-  $dir = '';
-}
+if (isset($_GET['dir'])) { $dir = $_GET['dir']; } else { $dir = ''; }
 
-$theDir = New Dir($dir);
+try
+{
+  $theDir = new Dir($dir);
+}
+catch (Exception $e)
+{
+  echo 'The requested directory could not be found!';
+  exit();
+}
 
 // Check if the dir exists
 ?>
@@ -30,12 +31,12 @@ $theDir = New Dir($dir);
   <header>
     <h1>Photo archive</h1>
     <div class="right">
-      Viewing: /<?php // Get image path ?><br />
+      Viewing: /<?php echo $dir ?><br />
       <?php // get number of files ?> files
     </div>
   </header>
   <section id="fileManager">
-
+    <?php print_r($theDir->getSubDir()); ?>
   </section>
   <section id="imageBrowser">
 

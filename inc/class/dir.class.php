@@ -3,34 +3,30 @@ class Dir
 {
 
   private $dir; // String containing the dir
-  private $subDir; // List of sub directories
-  private $files; // List of supported image and video files
+  private $subDir = array(); // List of sub directories
+  private $files = array(); // List of supported image and video files
 
   function Dir($theDir) {
-    $this->dir = ARCHIVE_MAIN . $theDir; // Set the dir
-    $this->validateDir(); // Validate dir
-    $this->setSubDir(); // Populate
-    $this->setFiles();
-  }
-
-  private function validateDir()
-  {
-    if (is_dir($this->dir))
+    if (is_dir(ARCHIVE_MAIN . $theDir))
     {
-      echo 'Good';
+      $this->dir = $theDir;
+      $this->setSubDir();
+      $this->setFiles();
     }
     else
     {
-      echo 'Bad';
-      $this->dir = ARCHIVE_MAIN;
+      throw new Exception('Directory not found');
     }
   }
 
   private function setSubDir()
   {
-    foreach (glob($this->dir . '/*', GLOB_ONLYDIR) as $eachDir)
+    echo $this->dir . '<br />';
+    foreach (glob(ARCHIVE_MAIN . $this->dir . '/*', GLOB_ONLYDIR) as $eachDir)
     {
-      echo 'SubDir ' . $eachDir . '<br />';
+      $eachDir = str_replace('//','/',$eachDir);
+      $eachDir = str_replace(ARCHIVE_MAIN,'',$eachDir);
+      array_push($this->subDir, $eachDir);
     }
   }
 
@@ -39,9 +35,14 @@ class Dir
 
   }
 
-  function getSubDir()
+  function getParentDir()
   {
 
+  }
+  
+  function getSubDir()
+  {
+    return $this->subDir;
   }
 
   function getFiles()
