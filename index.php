@@ -1,6 +1,21 @@
 <?php
 // Load the settings file
 require_once('inc/settings.php');
+require_once('inc/class/dir.class.php');
+
+// Get the dir to view
+if (isset($_GET['dir']))
+{
+  $dir = $_GET['dir'];
+}
+else
+{
+  $dir = '';
+}
+
+$theDir = New Dir($dir);
+
+// Check if the dir exists
 ?>
 <!DOCTYPE html>
 <html>
