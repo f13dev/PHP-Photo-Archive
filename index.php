@@ -26,6 +26,9 @@ catch (Exception $e)
   <!-- Load stylesheets -->
   <link rel="stylesheet" href="skin/<?php echo CSS_MAIN; ?>">
   <link rel="stylesheet" href="skin/<?php echo CSS_MOBILE; ?>">
+  <link href="//cdn.rawgit.com/noelboss/featherlight/1.7.6/release/featherlight.min.css" type="text/css" rel="stylesheet" />
+  <link href="//cdn.rawgit.com/noelboss/featherlight/1.7.6/release/featherlight.gallery.min.css" type="text/css" rel="stylesheet" />
+  <script src="//cdnjs.cloudflare.com/ajax/libs/detect_swipe/2.1.1/jquery.detect_swipe.min.js"></script>
 </head>
 <body>
   <header>
@@ -53,7 +56,7 @@ catch (Exception $e)
 
     foreach ($theDir->getFiles() as $key => $value)
     {
-      echo '<a href="' . $value . '">
+      echo '<a href="' . $value . '" data-featherlight class="gallery">
         <img src="' . $value . '" class="thumb" />' . $key . '
       </a>';
     }
@@ -69,5 +72,18 @@ catch (Exception $e)
       Copyright &copy; <?php // get copyright holder ?> (<?php echo date("Y"); ?>) - Powered by: <a href="http://f13dev.com">PHP Photo Archive</a>
     </div>
   </footer>
+  <script src="//code.jquery.com/jquery-latest.js"></script>
+  <script src="//cdn.rawgit.com/noelboss/featherlight/1.7.6/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="//cdn.rawgit.com/noelboss/featherlight/1.7.6/release/featherlight.gallery.min.js" type="text/javascript" charset="utf-8"></script>
+  <script>
+      $('.gallery').featherlightGallery({
+        gallery: {
+          fadeIn: 300,
+          fadeOut: 300
+        },
+        openSpeed:    300,
+        closeSpeed:   300
+      });
+  </script>
 </body>
 </html>
