@@ -71,7 +71,7 @@ catch (Exception $e)
     {
       echo '
       <a href="' . $value . '" data-featherlight class="gallery">
-        <div class="item">
+        <div class="item" caption="' . $key . '">
           <div style="background-image: url(' . $value . ')" class="icon">
           </div>
           <span>' . $key . '</span>
@@ -98,6 +98,13 @@ catch (Exception $e)
         openSpeed:    300,
         closeSpeed:   300
       });
+
+      // Add caption via > div caption attribute
+      $.featherlightGallery.prototype.afterContent = function() {
+        var caption = this.$currentTarget.find('div').attr('caption');
+        this.$instance.find('.caption').remove();
+        $('<div class="caption">').text(caption).appendTo(this.$instance.find('.featherlight-content'));
+      };
   </script>
 </body>
 </html>
