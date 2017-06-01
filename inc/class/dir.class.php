@@ -33,7 +33,7 @@ class Dir
     foreach (glob(ARCHIVE_MAIN . $this->dir . '/*.{jpg,jpeg,png,gif}', GLOB_BRACE) as $eachFile)
     {
       $path = ltrim($this->dir . '/' . basename($eachFile), '/');
-      $this->files[basename($eachFile)] = $path;
+      $this->files[basename($eachFile)] = ARCHIVE_MAIN . $this->dir . '/' . basename($eachFile);
     }
   }
 

@@ -48,6 +48,15 @@ catch (Exception $e)
     }
 
     print_r($theDir->getSubDir());
+
+    echo '<br /><br />';
+
+    foreach ($theDir->getFiles() as $key => $value)
+    {
+      echo '<a href="' . $value . '">' . $key . '</a>';
+    }
+
+    print_r($theDir->getFiles());
     ?>
   </section>
   <section id="imageBrowser">
