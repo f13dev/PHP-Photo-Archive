@@ -50,12 +50,18 @@ catch (Exception $e)
           <span>Parent</span>
         </div>
       </a>';
-      //echo '<a href="?dir=' . $theDir->getParentDir() . '">Parent</a>';
     }
 
     foreach ($theDir->getSubDir() as $key => $value)
     {
-      echo '<a href="?dir=' . $value . '">' . $key . '</a>';
+      echo '
+      <a href="?dir' . $value . '">
+        <div class="item">
+          <div class="icon subDir">
+          </div>
+          <span>' . $key . '</span>
+        </div>
+      </a>';
     }
 
     print_r($theDir->getSubDir());

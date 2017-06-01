@@ -88,3 +88,7 @@ footer a:hover {
 .upDir {
   background-image: url(../inc/images/upDir.png);
 }
+
+.subDir {
+  background-image: url(../inc/images/subDir.png);
+}
