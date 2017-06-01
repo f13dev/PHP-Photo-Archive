@@ -34,11 +34,21 @@ class Dir
 
   }
 
+  /**
+   * Returns the string representation of the dir
+   * @return String dir
+   */
   function getDir()
   {
     return $this->dir;
   }
 
+  /**
+   * Returns the string representation of the parent dir,
+   * if no parent dir exists, returns null
+   * @return String parent dir
+   * @return null
+   */
   function getParentDir()
   {
     if ($this->dir == '')
@@ -54,11 +64,19 @@ class Dir
     }
   }
 
+  /**
+   * Returns the subDir Array
+   * @return Array[name,path] Array of subDir name/path pairs
+   */
   function getSubDir()
   {
     return $this->subDir;
   }
 
+  /**
+   * Retunrs the file Array
+   * @return Array[name,path] Array of file name/path pairs
+   */
   function getFiles()
   {
 
