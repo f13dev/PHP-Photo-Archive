@@ -66,3 +66,25 @@ footer a:hover {
   max-width: <?php echo THUMB_MAX_WIDTH; ?>px;
   max-height: <?php echo THUMB_MAX_HEIGHT; ?>px;
 }
+
+.item {
+  float: left;
+  text-align: center
+}
+
+.item > span {
+  display: block;
+
+}
+
+.icon {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-positon: center center;
+  width: <?php echo THUMB_MAX_WIDTH; ?>px;
+  height: <?php echo THUMB_MAX_HEIGHT; ?>px;
+}
+
+.upDir {
+  background-image: url(../inc/images/upDir.png);
+}

@@ -42,7 +42,15 @@ catch (Exception $e)
     <?php
     if ($theDir->getDir() != null)
     {
-      echo '<a href="?dir=' . $theDir->getParentDir() . '">Parent</a>';
+      echo '
+      <a href="?dir=' . $theDir->getParentDir() . '">
+        <div class="item">
+          <div class="icon upDir">
+          </div>
+          <span>Parent</span>
+        </div>
+      </a>';
+      //echo '<a href="?dir=' . $theDir->getParentDir() . '">Parent</a>';
     }
 
     foreach ($theDir->getSubDir() as $key => $value)
