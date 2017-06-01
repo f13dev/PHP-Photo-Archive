@@ -55,7 +55,7 @@ catch (Exception $e)
     foreach ($theDir->getSubDir() as $key => $value)
     {
       echo '
-      <a href="?dir' . $value . '">
+      <a href="?dir=' . $value . '">
         <div class="item">
           <div class="icon subDir">
           </div>
@@ -63,23 +63,22 @@ catch (Exception $e)
         </div>
       </a>';
     }
-
-    print_r($theDir->getSubDir());
-
-    echo '<br /><br />';
-
-    foreach ($theDir->getFiles() as $key => $value)
-    {
-      echo '<a href="' . $value . '" data-featherlight class="gallery">
-        <img src="' . $value . '" class="thumb" />' . $key . '
-      </a>';
-    }
-
-    print_r($theDir->getFiles());
     ?>
   </section>
   <section id="imageBrowser">
-
+    <?php
+    foreach ($theDir->getFiles() as $key => $value)
+    {
+      echo '
+      <a href="' . $value . '" data-featherlight class="gallery">
+        <div class="item">
+          <div style="background-image: url(' . $value . ')" class="icon">
+          </div>
+          <span>' . $key . '</span>
+        </div>
+      </a>';
+    }
+    ?>
   </section>
   <footer>
     <div class="center">

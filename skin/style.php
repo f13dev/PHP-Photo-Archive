@@ -59,6 +59,10 @@ footer a:hover {
   text-decoration: none;
 }
 
+#fileManager, #imageBrowser {
+  clear: both;
+}
+
 /**
  * Thumbnail CSS
  */
@@ -69,7 +73,13 @@ footer a:hover {
 
 .item {
   float: left;
-  text-align: center
+  text-align: center;
+  border: 1px solid #ddd;
+  margin: 0.3em;
+}
+
+.item:hover {
+  border: 1px solid #333;
 }
 
 .item > span {
@@ -78,11 +88,14 @@ footer a:hover {
 }
 
 .icon {
+  border: 1px solid #ddd;
+  background-color: #f8f8f8;
   background-size: cover;
   background-repeat: no-repeat;
   background-positon: center center;
   width: <?php echo THUMB_MAX_WIDTH; ?>px;
   height: <?php echo THUMB_MAX_HEIGHT; ?>px;
+  margin: 0.3em;
 }
 
 .upDir {
@@ -91,4 +104,12 @@ footer a:hover {
 
 .subDir {
   background-image: url(../inc/images/subDir.png);
+}
+
+.video {
+  background-image: url(../inc/images/video.png);
+}
+
+.document {
+  bacground-image: url(../inc/images/document.png);
 }
