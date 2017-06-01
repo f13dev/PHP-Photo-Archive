@@ -30,9 +30,16 @@ class Dir
 
   private function setFiles()
   {
-    foreach (glob(ARCHIVE_MAIN . $this->dir . '/*.{jpg,jpeg,png,gif}', GLOB_BRACE) as $eachFile)
+    // Image formats without case sensitivity
+    $jpg = '[jJ][pP][gG]';
+    $jpeg = '[jJ][pP][eE][gG]';
+    $png = '[pP][nN][gG]';
+    $gif = '[gG][iI][fF]';
+    $tiff = '[tT][iI][fF][fF]';
+    // Video formats without case sensitivity
+
+    foreach (glob(ARCHIVE_MAIN . $this->dir . '/*.{' . $jpg . ',' . $jpeg . ',' . $png . ',' . $gif . ',' . $tiff . '}', GLOB_BRACE) as $eachFile)
     {
-      $path = ltrim($this->dir . '/' . basename($eachFile), '/');
       $this->files[basename($eachFile)] = ARCHIVE_MAIN . $this->dir . '/' . basename($eachFile);
     }
   }

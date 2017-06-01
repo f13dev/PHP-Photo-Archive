@@ -17,3 +17,8 @@ define('THUMB_MAX_HEIGHT', 150);
  */
 define('ARCHIVE_MAIN', 'archive/images/');
 define('ARCHIVE_THUMBS', 'archive/thumbs/');
+
+/**
+ * Thumb generation rules
+ */
+define('CREATE_THUMBS_ON_LOAD', true);
