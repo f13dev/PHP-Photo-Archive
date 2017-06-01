@@ -21,7 +21,6 @@ class Dir
 
   private function setSubDir()
   {
-    echo $this->dir . '<br />';
     foreach (glob(ARCHIVE_MAIN . $this->dir . '/*', GLOB_ONLYDIR) as $eachDir)
     {
       $path = ltrim($this->dir . '/' . basename($eachDir), '/');
