@@ -2,7 +2,7 @@
 /**
  * Define the CSS files to use
  */
-define('CSS_MAIN','style.css');
+define('CSS_MAIN','style.php');
 define('CSS_MOBILE','mobile.css');
 
 /**

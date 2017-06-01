@@ -54,7 +54,7 @@ catch (Exception $e)
     foreach ($theDir->getFiles() as $key => $value)
     {
       echo '<a href="' . $value . '">
-        <img src="' . $value . '" max-width="' . THUMB_MAX_WIDTH . '" max-height="' . THUMB_MAX_HEIGHT . '" />' . $key . '
+        <img src="' . $value . '" class="thumb" />' . $key . '
       </a>';
     }
 

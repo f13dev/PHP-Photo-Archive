@@ -1,3 +1,13 @@
+<?php
+header("Content-type: text/css; charset: UTF-8");
+
+// Load the settings to use within the CSS.
+require_once('../inc/settings.php');
+?>
+
+/**
+ * CSS start
+ */
 body {
   margin: 0;
   padding: 0;
@@ -47,4 +57,12 @@ footer a {
 
 footer a:hover {
   text-decoration: none;
+}
+
+/**
+ * Thumbnail CSS
+ */
+.thumb {
+  max-width: <?php echo THUMB_MAX_WIDTH; ?>px;
+  max-height: <?php echo THUMB_MAX_HEIGHT; ?>px;
 }
