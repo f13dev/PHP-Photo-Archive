@@ -30,7 +30,11 @@ class Dir
 
   private function setFiles()
   {
-
+    foreach (glob(ARCHIVE_MAIN . $this->dir . '/*.{jpg,jpeg,png,gif}', GLOB_BRACE) as $eachFile)
+    {
+      $path = ltrim($this->dir . '/' . basename($eachFile), '/');
+      $this->files[basename($eachFile)] = $path;
+    }
   }
 
   /**
