@@ -82,6 +82,6 @@ class Dir
    */
   function getFiles()
   {
-
+    return $this->files;
   }
 }
