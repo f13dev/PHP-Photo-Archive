@@ -35,7 +35,7 @@ catch (Exception $e)
     <h1>Photo archive</h1>
     <div class="right">
       Viewing: /<?php echo $dir ?><br />
-      <?php // get number of files ?> files
+      files: <?php echo $theDir->getFileCount(); ?>
     </div>
   </header>
   <section id="fileManager">

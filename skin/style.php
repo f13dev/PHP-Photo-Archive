@@ -21,7 +21,7 @@ header {
   left: 0;
   right: 0;
   height: 5em;
-  background: #666;
+  background: #676767;
   color: #eee;
   border-bottom: 0.2em solid #000;
 }
@@ -45,7 +45,7 @@ footer {
   right: 0;
   height: 2em;
   text-align: center;
-  background: #666;
+  background: #676767;
   color: #eee;
   line-height: 2em;
   border-top: 0.2em solid #000;
@@ -82,9 +82,13 @@ footer a:hover {
   border: 1px solid #333;
 }
 
+.item:hover > .icon {
+  opacity: .4;
+}
+
 .item > span {
   display: block;
-
+  color: #676767;
 }
 
 .icon {

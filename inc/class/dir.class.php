@@ -91,4 +91,14 @@ class Dir
   {
     return $this->files;
   }
+
+  /**
+   * Returns the number of files within the dir
+   * @return int
+   */
+  function getFileCount()
+  {
+    return count($this->files);
+  }
+
 }
