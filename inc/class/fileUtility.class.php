@@ -33,9 +33,7 @@ class FileUtility
    */
   function createThumbDir($aDirectory)
   {
-    echo 'Creating thumbs DIR for ' . $aDirectory . '<br />';
     $thumbDir = ARCHIVE_THUMBS . $aDirectory;
-    echo 'ThumbDir = ' . $thumbDir . '<br />';
     // Check if the thumbs dir exists
     if (!file_exists($thumbDir)) {
       mkdir($thumbDir, 0777, true);
