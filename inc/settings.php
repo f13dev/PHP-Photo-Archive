@@ -22,5 +22,10 @@ define('ARCHIVE_THUMBS', 'archive/thumbs/');
  * On load rules
  */
 define('CREATE_THUMBS_ON_LOAD', true); // Can create excessively slow page loads on new galleries
-define('DECLUTTER_THUMBS_ON_LOAD', false); //Can create slow page loading times, best via cron
+define('DECLUTTER_THUMBS_ON_LOAD', false); // Can create slow page loading times with little benefit, best via cron
 define('CREATE_NULL_INDEX_ON_LOAD', true);
+
+/**
+ * Pagination
+ */
+define('FILES_PER_PAGE', 50); // Does not include navigation items

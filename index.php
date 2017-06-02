@@ -2,6 +2,7 @@
 // Load the settings file
 require_once('inc/settings.php');
 require_once('inc/class/dir.class.php');
+require_once('inc/class/fileUtility.class.php');
 
 // Get the dir to view
 if (isset($_GET['dir'])) { $dir = $_GET['dir']; } else { $dir = ''; }
@@ -15,6 +16,8 @@ catch (Exception $e)
   echo 'The requested directory could not be found!';
   exit();
 }
+
+$fileUtility = new FileUtility();
 
 // Check if the dir exists
 ?>
@@ -70,24 +73,23 @@ catch (Exception $e)
       <?php
       // Check if thumbs are to be created on load
       if (CREATE_THUMBS_ON_LOAD) {
-        $thumbsDirExists = true;
-        // Attempt to create the thumbs directory
-        if (!file_exists(ARCHIVE_THUMBS . $theDir->getDir())) {
-          if (!mkdir(ARCHIVE_THUMBS . $theDir->getDir(), 0777, true)) {
-            echo 'Error creating thumbs directory!';
-            $thumbsDirExists = false;
-          }
+        if ($fileUtility->createThumbDir($theDir->getDir()))
+        {
+          $thumbsDirExists = true;
+        }
+        else
+        {
+          $thumbsDirExists = false;
         }
       }
 
       foreach ($theDir->getFiles() as $key => $value)
       {
-        // Get the expected thumb name
-        $thumb = str_replace(ARCHIVE_MAIN, ARCHIVE_THUMBS, $value);
-        // Check if thumbs are to be created and the directory exists and that the thumb doesnt exists
-        if (CREATE_THUMBS_ON_LOAD && $thumbsDirExists && !file_exists($thumb)) {
-          shell_exec('convert ' . $value . ' -resize ' . THUMB_MAX_WIDTH * 1.5 . 'x' . THUMB_MAX_HEIGHT * 1.5 . ' ' . $thumb);
+        if (CREATE_THUMBS_ON_LOAD && $thumbsDirExists)
+        {
+          $fileUtility->createThumb($value);
         }
+        
         // If thumb doesnt exist, use full image
         if (!file_exists($thumb)) {
           $thumb = $value;
