@@ -3,7 +3,6 @@ require_once('inc/class/fileUtility.class.php');
 $fileUtility = new FileUtility;
 
 $file = $_GET['file'];
-$mode = $_GET['mode'];
 
 $ext = $fileUtility->getExtension($file);
 
