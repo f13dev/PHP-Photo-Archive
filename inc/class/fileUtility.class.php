@@ -48,4 +48,10 @@ class FileUtility
       return false;
     }
   }
+
+  function getExtension($aFile)
+  {
+    $ext = explode('.', $aFile);
+    return strtolower(end($ext));
+  }
 }

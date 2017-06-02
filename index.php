@@ -86,23 +86,44 @@ $fileUtility = new FileUtility();
 
       foreach ($theDir->getFiles() as $key => $value)
       {
-        if (CREATE_THUMBS_ON_LOAD && $thumbsDirExists)
+        $ext = $fileUtility->getExtension($value);
+        if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'gif' || $ext == 'tiff')
         {
-          $fileUtility->createThumb($value);
-        }
 
-        // If thumb doesnt exist, use full image
-        if (!file_exists($thumb)) {
-          $thumb = $value;
+          // Process images
+            if (CREATE_THUMBS_ON_LOAD && $thumbsDirExists)
+            {
+              $fileUtility->createThumb($value);
+            }
+
+            $thumb = str_replace(ARCHIVE_MAIN, ARCHIVE_THUMBS, $value);
+
+            // If thumb doesnt exist, use full image
+            if (!file_exists($thumb)) {
+              $thumb = $value;
+            }
+            echo '
+            <a href="' . $value . '" data-featherlight class="gallery">
+              <div class="item" caption="' . $key . '">
+                <div class="icon" style="background-image: url(' . $thumb . ')">
+                </div>
+                <span>' . $key . '</span>
+              </div>
+            </a>';
         }
-        echo '
-        <a href="' . $value . '" data-featherlight class="gallery">
-          <div class="item" caption="' . $key . '">
-            <div class="icon" style="background-image: url(' . $thumb . ')">
-            </div>
-            <span>' . $key . '</span>
-          </div>
-        </a>';
+        elseif ($ext == 'mp4')
+        {
+            // deal with mp4
+            echo '
+            <a href="video.php?file=' . $value . '&mode=mp4" data-featherlight class="gallery">
+              <div class="item" caption="' . $key . '">
+                <div class="icon video">
+                </div>
+                <span>' . $key . '</span>
+              </div>
+            </a>
+            ';
+        }
       }
       ?>
     </section>

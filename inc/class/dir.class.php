@@ -36,9 +36,13 @@ class Dir
     $png = '[pP][nN][gG]';
     $gif = '[gG][iI][fF]';
     $tiff = '[tT][iI][fF][fF]';
+    $mp4 = '[mM][pP]4';
+    $webm = '[wW][eE][bB][mM]';
+    $ogg = '[oO][gG][gG]';
     // Video formats without case sensitivity
 
-    foreach (glob(ARCHIVE_MAIN . $this->dir . '/*.{' . $jpg . ',' . $jpeg . ',' . $png . ',' . $gif . ',' . $tiff . '}', GLOB_BRACE) as $eachFile)
+    foreach (glob(ARCHIVE_MAIN . $this->dir . '/*.{' . $jpg . ',' . $jpeg . ',' . $png . ',' . $gif . ',' .
+      $tiff . ',' . $mp4 . ',' . $webm . ',' . $ogg . '}', GLOB_BRACE) as $eachFile)
     {
       $this->files[basename($eachFile)] = ARCHIVE_MAIN . $this->dir . '/' . basename($eachFile);
     }
