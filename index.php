@@ -68,12 +68,34 @@ catch (Exception $e)
     </section>
     <section id="imageBrowser">
       <?php
+      // Check if thumbs are to be created on load
+      if (CREATE_THUMBS_ON_LOAD) {
+        $thumbsDirExists = true;
+        // Attempt to create the thumbs directory
+        if (!file_exists(ARCHIVE_THUMBS . $theDir->getDir())) {
+          if (!mkdir(ARCHIVE_THUMBS . $theDir->getDir(), 0777, true)) {
+            echo 'Error creating thumbs directory!';
+            $thumbsDirExists = false;
+          }
+        }
+      }
+
       foreach ($theDir->getFiles() as $key => $value)
       {
+        // Get the expected thumb name
+        $thumb = str_replace(ARCHIVE_MAIN, ARCHIVE_THUMBS, $value);
+        // Check if thumbs are to be created and the directory exists and that the thumb doesnt exists
+        if (CREATE_THUMBS_ON_LOAD && $thumbsDirExists && !file_exists($thumb)) {
+          shell_exec('convert ' . $value . ' -resize ' . THUMB_MAX_WIDTH * 1.5 . 'x' . THUMB_MAX_HEIGHT * 1.5 . ' ' . $thumb);
+        }
+        // If thumb doesnt exist, use full image
+        if (!file_exists($thumb)) {
+          $thumb = $value;
+        }
         echo '
         <a href="' . $value . '" data-featherlight class="gallery">
           <div class="item" caption="' . $key . '">
-            <div style="background-image: url(' . $value . ')" class="icon">
+            <div class="icon" style="background-image: url(' . $thumb . ')">
             </div>
             <span>' . $key . '</span>
           </div>
