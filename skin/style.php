@@ -20,6 +20,14 @@ main {
   clear:both;
 }
 
+#imageBrowser {
+  margin-bottom: 5em;
+}
+
+#imageBrowser:after {
+  clear: both;
+}
+
 header {
   position: fixed;
   top: 0;

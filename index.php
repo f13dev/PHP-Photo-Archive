@@ -31,6 +31,7 @@ $fileUtility = new FileUtility();
   <link rel="stylesheet" href="skin/<?php echo CSS_MOBILE; ?>">
   <link href="//cdn.rawgit.com/noelboss/featherlight/1.7.6/release/featherlight.min.css" type="text/css" rel="stylesheet" />
   <link href="//cdn.rawgit.com/noelboss/featherlight/1.7.6/release/featherlight.gallery.min.css" type="text/css" rel="stylesheet" />
+  <script src="//code.jquery.com/jquery-latest.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/detect_swipe/2.1.1/jquery.detect_swipe.min.js"></script>
 </head>
 <body>
@@ -89,7 +90,7 @@ $fileUtility = new FileUtility();
         {
           $fileUtility->createThumb($value);
         }
-        
+
         // If thumb doesnt exist, use full image
         if (!file_exists($thumb)) {
           $thumb = $value;
@@ -112,7 +113,6 @@ $fileUtility = new FileUtility();
     </div>
   </footer>
   <!-- Load featherlight js -->
-  <script src="//code.jquery.com/jquery-latest.js"></script>
   <script src="//cdn.rawgit.com/noelboss/featherlight/1.7.6/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
   <script src="//cdn.rawgit.com/noelboss/featherlight/1.7.6/release/featherlight.gallery.min.js" type="text/javascript" charset="utf-8"></script>
   <script>
