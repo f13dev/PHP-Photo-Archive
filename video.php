@@ -10,7 +10,7 @@ $ext = $fileUtility->getExtension($file);
 if ($ext == 'mp4' || $ext == 'webm' || $ext == 'ogg')
 {
   echo '
-  <video controls>
+  <video autoplay>
     <source src="' . $file . '" type="video/' . $ext . '">
     Your browser does not support the video tag.
   </video>

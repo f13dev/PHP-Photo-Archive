@@ -111,11 +111,11 @@ $fileUtility = new FileUtility();
               </div>
             </a>';
         }
-        elseif ($ext == 'mp4')
+        elseif ($ext == 'mp4' || $ext == 'webm' || $ext == 'ogg')
         {
             // deal with mp4
             echo '
-            <a href="video.php?file=' . $value . '&mode=mp4" data-featherlight class="gallery">
+            <a href="video.php?file=' . $value . '" data-featherlight class="gallery">
               <div class="item" caption="' . $key . '">
                 <div class="icon video">
                 </div>
