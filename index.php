@@ -38,48 +38,50 @@ catch (Exception $e)
       files: <?php echo $theDir->getFileCount(); ?>
     </div>
   </header>
-  <section id="fileManager">
-    <?php
-    if ($theDir->getDir() != null)
-    {
-      echo '
-      <a href="?dir=' . $theDir->getParentDir() . '">
-        <div class="item">
-          <div class="icon upDir">
+  <main>
+    <section id="fileManager">
+      <?php
+      if ($theDir->getDir() != null)
+      {
+        echo '
+        <a href="?dir=' . $theDir->getParentDir() . '">
+          <div class="item">
+            <div class="icon upDir">
+            </div>
+            <span>Parent</span>
           </div>
-          <span>Parent</span>
-        </div>
-      </a>';
-    }
+        </a>';
+      }
 
-    foreach ($theDir->getSubDir() as $key => $value)
-    {
-      echo '
-      <a href="?dir=' . $value . '">
-        <div class="item">
-          <div class="icon subDir">
+      foreach ($theDir->getSubDir() as $key => $value)
+      {
+        echo '
+        <a href="?dir=' . $value . '">
+          <div class="item">
+            <div class="icon subDir">
+            </div>
+            <span>' . $key . '</span>
           </div>
-          <span>' . $key . '</span>
-        </div>
-      </a>';
-    }
-    ?>
-  </section>
-  <section id="imageBrowser">
-    <?php
-    foreach ($theDir->getFiles() as $key => $value)
-    {
-      echo '
-      <a href="' . $value . '" data-featherlight class="gallery">
-        <div class="item" caption="' . $key . '">
-          <div style="background-image: url(' . $value . ')" class="icon">
+        </a>';
+      }
+      ?>
+    </section>
+    <section id="imageBrowser">
+      <?php
+      foreach ($theDir->getFiles() as $key => $value)
+      {
+        echo '
+        <a href="' . $value . '" data-featherlight class="gallery">
+          <div class="item" caption="' . $key . '">
+            <div style="background-image: url(' . $value . ')" class="icon">
+            </div>
+            <span>' . $key . '</span>
           </div>
-          <span>' . $key . '</span>
-        </div>
-      </a>';
-    }
-    ?>
-  </section>
+        </a>';
+      }
+      ?>
+    </section>
+  </main>
   <footer>
     <div class="center">
       Copyright &copy; <?php // get copyright holder ?> (<?php echo date("Y"); ?>) - Powered by: <a href="http://f13dev.com">PHP Photo Archive</a>

@@ -12,7 +12,12 @@ body {
   margin: 0;
   padding: 0;
   margin-top: 5.2em;
-  margin-bottom: 2.2em;
+  margin-bottom: -2.2em;
+}
+
+main {
+  padding-bottom: 10em;
+  clear:both;
 }
 
 header {
