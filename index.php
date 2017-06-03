@@ -130,7 +130,7 @@ $fileUtility = new FileUtility();
   </main>
   <footer>
     <div class="center">
-      Copyright &copy; <?php // get copyright holder ?> (<?php echo date("Y"); ?>) - Powered by: <a href="http://f13dev.com">PHP Photo Archive</a>
+      Copyright &copy; <?php echo COPYRIGHT_HOLDER; ?> (<?php echo date("Y"); ?>) - Powered by: <a href="http://f13dev.com">PHP Photo Archive</a>
     </div>
   </footer>
   <!-- Load featherlight js -->

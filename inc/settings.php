@@ -1,5 +1,10 @@
 <?php
 /**
+ * Owner information
+ */
+define('COPYRIGHT_HOLDER','F13Dev');
+
+/**
  * Define the CSS files to use
  */
 define('CSS_MAIN','style.php');
