@@ -52,9 +52,6 @@ class Dir
 
   private function setNotes()
   {
-    // Case insensitive txt String
-    $txt = '[tT][xX][tT]';
-
     foreach (glob(ARCHIVE_MAIN . $this->dir . '/*.[tT][xX][tT]', GLOB_BRACE) as $eachFile)
     {
       $this->notes[basename($eachFile)] = ARCHIVE_MAIN . $this->dir . '/' . str_replace(' ', '%20', basename($eachFile));
