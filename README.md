@@ -43,6 +43,14 @@ JPG | YES | YES | YES | YES | YES
 PNG | YES | YES | YES | YES | YES
 TIFF | YES | YES | YES | YES | YES
 
+And the following video formats
+Format | Chrome | Firefox | Internet Explorer | Opera | Safari
+-------|--------|---------|-------------------|-------|-------
+MP4 | YES | YES | YES | YES | YES
+OGG | YES | YES | NO | YES | NO
+WEBM | YES | YES | NO | YES | NO
+
+
 ### Creating a notes file
 
 ### Settings
