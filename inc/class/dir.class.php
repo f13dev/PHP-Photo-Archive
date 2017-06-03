@@ -46,7 +46,7 @@ class Dir
     foreach (glob(ARCHIVE_MAIN . $this->dir . '/*.{' . $jpg . ',' . $jpeg . ',' . $png . ',' . $gif . ',' .
       $tiff . ',' . $mp4 . ',' . $webm . ',' . $ogg . '}', GLOB_BRACE) as $eachFile)
     {
-      $this->files[basename($eachFile)] = ARCHIVE_MAIN . $this->dir . '/' . basename($eachFile);
+      $this->files[basename($eachFile)] = ARCHIVE_MAIN . $this->dir . '/' . str_replace(' ', '%20', basename($eachFile));
     }
   }
 
@@ -57,7 +57,7 @@ class Dir
 
     foreach (glob(ARCHIVE_MAIN . $this->dir . '/*.[tT][xX][tT]', GLOB_BRACE) as $eachFile)
     {
-      $this->notes[basename($eachFile)] = ARCHIVE_MAIN . $this->dir . '/' . basename($eachFile);
+      $this->notes[basename($eachFile)] = ARCHIVE_MAIN . $this->dir . '/' . str_replace(' ', '%20', basename($eachFile));
     }
   }
 
