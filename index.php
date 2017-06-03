@@ -75,7 +75,7 @@ $fileUtility = new FileUtility();
       foreach ($theDir->getNotes() as $key => $value)
       {
         echo '
-        <a href="notes.php?file=' . $value . '" data-featherlight>
+        <a href="inc/notes.php?file=' . $value . '" data-featherlight>
           <div class="item" caption="' . $key . '">
             <div class="icon notes">
             </div>
@@ -132,7 +132,7 @@ $fileUtility = new FileUtility();
         {
             // deal with mp4
             echo '
-            <a href="video.php?file=' . $value . '" data-featherlight class="gallery">
+            <a href="inc/video.php?file=' . $value . '" data-featherlight class="gallery">
               <div class="item" caption="' . $key . '">
                 <div class="icon video">
                 </div>
