@@ -3,10 +3,10 @@ A simple photo archive and gallery tool for web servers. Designed with thought f
 
 Photo Archive does not require any form of database. Simply create folders; drag and drop image to create your archive.
 
-[Requirements](#requirements)
-[Installing](#installing)
-[Using](#using)
-[License](#license)
+1. [Requirements](#requirements)
+1. [Installing](#installing)
+1. [Using](#using)
+1. [License](#license)
 
 ## Requirements
 * Apache/Nginx/Other web server
