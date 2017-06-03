@@ -130,3 +130,26 @@ footer a:hover {
 .notes {
   background-image: url(../inc/images/document.png);
 }
+
+/**
+ * FancyBox download button
+ */
+
+ .fancybox-download:before {
+  top: 14px;
+  left: 22px;
+  border-left: 2px solid #fff;
+  height: 12px;
+}
+
+.fancybox-download:after {
+  bottom: 18px;
+  left: 23px;
+  height: 8px;
+  border-bottom: 2px solid #fff;
+  border-right: 2px solid #fff;
+  width: 8px;
+  background: transparent;
+  transform: rotate(45deg);
+  transform-origin: 0 0;
+}

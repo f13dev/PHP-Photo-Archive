@@ -29,10 +29,12 @@ $fileUtility = new FileUtility();
   <!-- Load stylesheets -->
   <link rel="stylesheet" href="skin/<?php echo CSS_MAIN; ?>">
   <link rel="stylesheet" href="skin/<?php echo CSS_MOBILE; ?>">
-  <link href="//cdn.rawgit.com/noelboss/featherlight/1.7.6/release/featherlight.min.css" type="text/css" rel="stylesheet" />
-  <link href="//cdn.rawgit.com/noelboss/featherlight/1.7.6/release/featherlight.gallery.min.css" type="text/css" rel="stylesheet" />
-  <script src="//code.jquery.com/jquery-latest.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/detect_swipe/2.1.1/jquery.detect_swipe.min.js"></script>
+  <link  href="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.css" rel="stylesheet">
+
+  <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.js"></script>
+
+
 </head>
 <body>
   <header>
@@ -75,7 +77,7 @@ $fileUtility = new FileUtility();
       foreach ($theDir->getNotes() as $key => $value)
       {
         echo '
-        <a href="inc/notes.php?file=' . $value . '" data-featherlight>
+        <a href="inc/notes.php?file=' . $value . '" data-fancybox data-type="ajax">
           <div class="item" caption="' . $key . '">
             <div class="icon notes">
             </div>
@@ -120,7 +122,7 @@ $fileUtility = new FileUtility();
               $thumb = $value;
             }
             echo '
-            <a href="' . $value . '" data-featherlight class="gallery">
+            <a href="' . $value . '" data-fancybox="gallery" data-caption="' . $key . '">
               <div class="item" caption="' . $key . '">
                 <div class="icon" style="background-image: url(' . $thumb . ')">
                 </div>
@@ -132,7 +134,7 @@ $fileUtility = new FileUtility();
         {
             // deal with mp4
             echo '
-            <a href="inc/video.php?file=' . $value . '" data-featherlight class="gallery">
+            <a href="inc/video.php?file=' . $value . '" data-fancybox="gallery" data-type="ajax" data-caption="' . $key . '">
               <div class="item" caption="' . $key . '">
                 <div class="icon video">
                 </div>
@@ -145,30 +147,22 @@ $fileUtility = new FileUtility();
       ?>
     </section>
   </main>
+  <script>
+  $( '[data-fancybox]' ).fancybox({
+  	onInit : function( instance ) {
+  		instance.$refs.downloadButton = $('<a class="fancybox-button fancybox-download" title="Download" download></a>')
+  			.appendTo( instance.$refs.buttons );
+  	},
+  	beforeMove: function( instance, current ) {
+  		instance.$refs.downloadButton.attr('href', current.src);
+  	}
+  });
+
+  </script>
   <footer>
     <div class="center">
       Copyright &copy; <?php echo COPYRIGHT_HOLDER; ?> (<?php echo date("Y"); ?>) - Powered by: <a href="http://f13dev.com">PHP Photo Archive</a>
     </div>
   </footer>
-  <!-- Load featherlight js -->
-  <script src="//cdn.rawgit.com/noelboss/featherlight/1.7.6/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
-  <script src="//cdn.rawgit.com/noelboss/featherlight/1.7.6/release/featherlight.gallery.min.js" type="text/javascript" charset="utf-8"></script>
-  <script>
-      $('.gallery').featherlightGallery({
-        gallery: {
-          fadeIn: 300,
-          fadeOut: 300
-        },
-        openSpeed:    300,
-        closeSpeed:   300
-      });
-
-      // Add caption via > div caption attribute
-      $.featherlightGallery.prototype.afterContent = function() {
-        var caption = this.$currentTarget.find('div').attr('caption');
-        this.$instance.find('.caption').remove();
-        $('<div class="caption">').text(caption).appendTo(this.$instance.find('.featherlight-content'));
-      };
-  </script>
 </body>
 </html>
