@@ -47,7 +47,7 @@ And the following video formats
 
 Format | Chrome | Firefox | Internet Explorer | Opera | Safari
 -------|--------|---------|-------------------|-------|-------
-MP4 | YES | YES | YES | YES | YES
+MP4 | YES | YES | YES | YES (v25+) | YES
 OGG | YES | YES | NO | YES | NO
 WEBM | YES | YES | NO | YES | NO
 
