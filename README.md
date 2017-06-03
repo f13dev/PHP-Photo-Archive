@@ -6,10 +6,10 @@ Photo Archive does not require any form of database. Simply create folders; drag
 1. [Requirements](#requirements)
 1. [Installing](#installing)
 1. [Using](#using)
-  1. [Creating a gallery](#creating-a-gallery)
-  1. [Adding images and videos](#adding-images-and-videos)
-  1. [Creating a notes file](#creating-a-notes-file)
-  1. [Settings](#settings)
+    1. [Creating a gallery](#creating-a-gallery)
+    1. [Adding images and videos](#adding-images-and-videos)
+    1. [Creating a notes file](#creating-a-notes-file)
+    1. [Settings](#settings)
 1. [License](#license)
 
 ## Requirements
