@@ -1,8 +1,10 @@
 # PHP Photo Archive
+A simple photo archive and gallery tool for web servers. Designed with thought for desktop and mobile users from the ground up.
 
-## About
+Photo Archive does not require any form of database. Simply create folders; drag and drop image to create your archive.
 
 ## Requirements
+PHP v? (Pending testing)
 
 ## Installing
 
