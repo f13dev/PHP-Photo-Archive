@@ -27,8 +27,18 @@ If you prefer to you can always connect to your web server via SSH and use the f
 ## Using
 
 ### Creating a gallery
+Galleries are created with a simple folder structure of directories and their content. No limits are imposed with regards to the depth of the directory structure.
+
+By default the archive root is contained in the following location:
+    script root/archive/images/
+Any directories and/or files within this location can form your archive.
 
 ### Adding images and videos
+At present PHP Photo Archive accepts the following image formats:
+
+Format | Chrome | Firefox | Internet Explorer | Opera | Safari
+-------|--------|---------|-------------------|-------|-------
+JPG | YES | YES | YES | YES | YES
 
 ### Creating a notes file
 
