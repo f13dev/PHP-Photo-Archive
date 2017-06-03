@@ -38,7 +38,10 @@ At present PHP Photo Archive accepts the following image formats:
 
 Format | Chrome | Firefox | Internet Explorer | Opera | Safari
 -------|--------|---------|-------------------|-------|-------
+GIF  | YES | YES | YES | YES | YES
 JPG | YES | YES | YES | YES | YES
+PNG | YES | YES | YES | YES | YES
+TIFF | YES | YES | YES | YES | YES
 
 ### Creating a notes file
 
