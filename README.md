@@ -18,6 +18,11 @@ Photo Archive does not require any form of database. Simply create folders; drag
 * FTP/sFTP/Other file upload access
 
 ## Installing
+Due to the way PHP Photo Archive is designed installation can be as simple as connecting to your web server via file access and uploading the release.
+
+If you prefer to you can always connect to your web server via SSH and use the following command to clone the repository.
+
+> git clone https://github.com/f13dev/PHP-Photo-Archive /path/to/install/to
 
 ## Using
 
