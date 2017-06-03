@@ -10,6 +10,7 @@ Photo Archive does not require any form of database. Simply create folders; drag
     1. [Adding images and videos](#adding-images-and-videos)
     1. [Creating a notes file](#creating-a-notes-file)
     1. [Settings](#settings)
+    1. [Managing archive maintenance via CRON](managing-archive-maintenance-via-cron)
 1. [License](#license)
 
 ## Requirements
@@ -66,6 +67,8 @@ Notes files have been included to allow adding information about the contents of
 Create a standard txt file using any plain text editor and upload it to the directory of the desired gallery.
 
 ### Settings
+
+### Managing archive maintenance via CRON
 
 ## License
 [BSD 3-Clause License](LICENSE)
