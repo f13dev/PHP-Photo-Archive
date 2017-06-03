@@ -59,6 +59,11 @@ To add your desired image and video content:
 After uploading your content, thumbnails will not have been created. Until thumbnails are created browsing may be slow, depending on the size of your images and the connection speed.
 
 ### Creating a notes file
+A notes file is a plain text file which resides in a gallery directory. A link to this file will be placed on each page of the given directory.
+
+Notes files have been included to allow adding information about the contents of a gallery; such as the date, location or any other desired information.
+
+Create a standard txt file using any plain text editor and upload it to the directory of the desired gallery.
 
 ### Settings
 
