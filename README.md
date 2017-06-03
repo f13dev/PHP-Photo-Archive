@@ -51,6 +51,12 @@ MP4 | YES | YES | YES | YES (v25+) | YES
 OGG | YES | YES | NO | YES | NO
 WEBM | YES | YES | NO | YES | NO
 
+To add your desired image and video content:
+* Connect to your web server via your chosen file manager
+* Locate/or create the desired gallery directory
+* Upload your desired content
+
+After uploading your content, thumbnails will not have been created. Until thumbnails are created browsing may be slow, depending on the size of your images and the connection speed.
 
 ### Creating a notes file
 
