@@ -5,6 +5,7 @@ class Dir
   private $dir; // String containing the dir
   private $subDir = array(); // List of sub directories
   private $files = array(); // List of supported image and video files
+  private $notes = array(); // List of txt files
 
   function Dir($theDir) {
     if (is_dir(ARCHIVE_MAIN . $theDir))
@@ -12,6 +13,7 @@ class Dir
       $this->dir = ltrim($theDir, '/');
       $this->setSubDir();
       $this->setFiles();
+      $this->setNotes();
     }
     else
     {
@@ -45,6 +47,17 @@ class Dir
       $tiff . ',' . $mp4 . ',' . $webm . ',' . $ogg . '}', GLOB_BRACE) as $eachFile)
     {
       $this->files[basename($eachFile)] = ARCHIVE_MAIN . $this->dir . '/' . basename($eachFile);
+    }
+  }
+
+  private function setNotes()
+  {
+    // Case insensitive txt String
+    $txt = '[tT][xX][tT]';
+
+    foreach (glob(ARCHIVE_MAIN . $this->dir . '/*.[tT][xX][tT]', GLOB_BRACE) as $eachFile)
+    {
+      $this->notes[basename($eachFile)] = ARCHIVE_MAIN . $this->dir . '/' . basename($eachFile);
     }
   }
 
@@ -94,6 +107,15 @@ class Dir
   function getFiles()
   {
     return $this->files;
+  }
+
+  /**
+   * Returns the notes Array
+   * @return Array[name,path] Array of notes name/path pairs
+   */
+  function getNotes()
+  {
+    return $this->notes;
   }
 
   /**

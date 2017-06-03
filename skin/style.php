@@ -127,6 +127,6 @@ footer a:hover {
   background-image: url(../inc/images/video.png);
 }
 
-.document {
-  bacground-image: url(../inc/images/document.png);
+.notes {
+  background-image: url(../inc/images/document.png);
 }

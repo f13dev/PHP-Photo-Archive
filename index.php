@@ -45,6 +45,7 @@ $fileUtility = new FileUtility();
   <main>
     <section id="fileManager">
       <?php
+      // Show the parent dir button if needed
       if ($theDir->getDir() != null)
       {
         echo '
@@ -57,6 +58,7 @@ $fileUtility = new FileUtility();
         </a>';
       }
 
+      // Show sub dir buttons
       foreach ($theDir->getSubDir() as $key => $value)
       {
         echo '
@@ -67,6 +69,21 @@ $fileUtility = new FileUtility();
             <span>' . $key . '</span>
           </div>
         </a>';
+      }
+
+      // Show text file links
+      foreach ($theDir->getNotes() as $key => $value)
+      {
+        echo '
+        <a href="notes.php?file=' . $value . '" data-featherlight>
+          <div class="item" caption="' . $key . '">
+            <div class="icon notes">
+            </div>
+            <span>' . $key . '</span>
+          </div>
+        </a>
+        ';
+
       }
       ?>
     </section>
