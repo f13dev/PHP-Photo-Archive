@@ -68,3 +68,4 @@ Create a standard txt file using any plain text editor and upload it to the dire
 ### Settings
 
 ## License
+[BSD 3-Clause License](blob/master/LICENSE)
