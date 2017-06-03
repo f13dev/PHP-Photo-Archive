@@ -4,7 +4,9 @@ A simple photo archive and gallery tool for web servers. Designed with thought f
 Photo Archive does not require any form of database. Simply create folders; drag and drop image to create your archive.
 
 ## Requirements
-PHP v? (Pending testing)
+* Apache/Nginx/Other web server
+* PHP v? (Pending testing)
+* FTP/sFTP/Other file upload access
 
 ## Installing
 
