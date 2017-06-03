@@ -44,6 +44,7 @@ PNG | YES | YES | YES | YES | YES
 TIFF | YES | YES | YES | YES | YES
 
 And the following video formats
+
 Format | Chrome | Firefox | Internet Explorer | Opera | Safari
 -------|--------|---------|-------------------|-------|-------
 MP4 | YES | YES | YES | YES | YES
