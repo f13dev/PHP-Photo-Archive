@@ -12,7 +12,7 @@ if (!file_exists(ARCHIVE_MAIN . '/index.php'))
   touch(ARCHIVE_MAIN . '/index.php');
   echo 'Created NUL: ' . realpath(ARCHIVE_MAIN . '/index.php') . '<br />';
 }
-if (!file_exists(ARCHIVE_THUMS . '/index.php'))
+if (!file_exists(ARCHIVE_THUMBS . '/index.php'))
 {
   touch(ARCHIVE_THUMBS . '/index.php');
   echo 'Created NUL: ' . realpath(ARCHIVE_THUMBS . '/index.php') . '<br />';
