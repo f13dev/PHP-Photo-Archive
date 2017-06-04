@@ -153,3 +153,7 @@ footer a:hover {
   transform: rotate(45deg);
   transform-origin: 0 0;
 }
+
+.fancybox-content {
+  min-height: 600px;
+}

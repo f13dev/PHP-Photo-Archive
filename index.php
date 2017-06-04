@@ -134,7 +134,7 @@ $fileUtility = new FileUtility();
         {
             // deal with mp4
             echo '
-            <a href="inc/video.php?file=' . $value . '" data-fancybox="gallery" data-type="ajax" data-caption="' . $key . '">
+            <a href="inc/video.php?file=' . $value . '" data-fancybox="gallery" data-type="iframe" data-caption="' . $key . '">
               <div class="item" caption="' . $key . '">
                 <div class="icon video">
                 </div>
@@ -156,6 +156,15 @@ $fileUtility = new FileUtility();
   	beforeMove: function( instance, current ) {
   		instance.$refs.downloadButton.attr('href', current.src);
   	}
+  });
+
+  $("[data-fancybox]").fancybox({
+      iframe : {
+          css : {
+              width  : '90%',
+              height : '90%'
+          }
+      }
   });
 
   </script>
