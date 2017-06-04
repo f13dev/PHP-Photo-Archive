@@ -82,7 +82,8 @@ class Dir
     }
     else
     {
-      $last = end(explode('/',$this->dir));
+      $last = explode('/',$this->dir);
+      $last = end($last);
       $parent = rtrim(str_replace($last,'',$this->dir), '/');
       return $parent;
     }
