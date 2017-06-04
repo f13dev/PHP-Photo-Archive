@@ -6,6 +6,18 @@ require_once('inc/settings.php');
 require_once('inc/class/fileUtility.class.php');
 $fileUtil = new FileUtility();
 
+// Create null indexes at root levelif they don't exist
+if (!file_exists(ARCHIVE_MAIN . '/index.php'))
+{
+  touch(ARCHIVE_MAIN . '/index.php');
+  echo 'Created NUL: ' . realpath(ARCHIVE_MAIN . '/index.php') . '<br />';
+}
+if (!file_exists(ARCHIVE_THUMS . '/index.php'))
+{
+  touch(ARCHIVE_THUMBS . '/index.php');
+  echo 'Created NUL: ' . realpath(ARCHIVE_THUMBS . '/index.php') . '<br />';
+}
+
 // Main iterator, searching images dir
 $objects = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(ARCHIVE_MAIN), RecursiveIteratorIterator::SELF_FIRST);
 foreach($objects as $name => $object){
@@ -21,7 +33,17 @@ foreach($objects as $name => $object){
       {
         echo 'Created DIR: ' . realpath($thumb) . '<br />';
       }
-
+      // Create null indexes if they don't exist
+      if (!file_exists($name . '/index.php'))
+      {
+        touch($name . '/index.php');
+        echo 'Created NUL: ' . realpath($name . '/index.php') . '<br />';
+      }
+      if (!file_exists($thumb . '/index.php'))
+      {
+        touch ($thumb . '/index.php');
+        echo 'Created NUL: ' . realpath($thumb . '/index.php') . '<br />';
+      }
     }
     elseif (preg_match('/(jpg|jpeg|gif|tiff|png)/i',$name))
     {
@@ -33,17 +55,4 @@ foreach($objects as $name => $object){
   }
 }
 
-/*
-// Search and create null indexes
-if (!file_exists($name . '/index.php'))
-{
-  touch($name . '/index.php');
-  echo 'Created NUL: ' . realpath($name . '/index.php');
-}
-if (!file_exists($thumb . '/index.php'))
-{
-  touch ($name . '/index.php');
-  echo 'Created NUL: ' . realpath($name . '/index.php');
-}
- */
 ?>
