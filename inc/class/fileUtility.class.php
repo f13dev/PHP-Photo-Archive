@@ -14,15 +14,19 @@ class FileUtility
     {
       // Attempt to create the thumb
       shell_exec('convert ' . $anImage . ' -resize ' . THUMB_MAX_WIDTH * 1.5 . 'x' . THUMB_MAX_HEIGHT * 1.5 . ' ' . $thumb);
-    }
-    // Check if the thumb exists and return as appropriate
-    if (file_exists($thumb))
-    {
-      return true;
+      // Check if the thumb exists and return as appropriate
+      if (file_exists($thumb))
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
     }
     else
     {
-      return false;
+      return null;
     }
   }
 
@@ -37,16 +41,21 @@ class FileUtility
     // Check if the thumbs dir exists
     if (!file_exists($thumbDir)) {
       mkdir($thumbDir, 0777, true);
-    }
-    // Check if the thumb dir exists and return appropriate
-    if (file_exists($thumbDir))
-    {
-      return true;
+      // Check if the thumb dir exists and return appropriate
+      if (file_exists($thumbDir))
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
     }
     else
     {
-      return false;
+      return null;
     }
+
   }
 
   function getExtension($aFile)
