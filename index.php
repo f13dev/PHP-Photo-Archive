@@ -6,6 +6,8 @@ require_once('inc/class/fileUtility.class.php');
 
 // Get the dir to view
 if (isset($_GET['dir'])) { $dir = $_GET['dir']; } else { $dir = ''; }
+// Get the page to view
+if (isset($_GET['page']) && ctype_digit($_GET['page'])) { $page = $_GET['page']; } else { $page = 1; }
 
 try
 {
@@ -19,6 +21,21 @@ catch (Exception $e)
 
 $fileUtility = new FileUtility();
 
+$fileCount = $theDir->getFileCount();
+
+if ($fileCount > FILES_PER_PAGE) {
+  if ($page > 1)
+  {
+    echo 'Back a page';
+  }
+  echo $fileCount/FILES_PER_PAGE . 'pages';
+}
+
+$start = $page * FILES_PER_PAGE - FILES_PER_PAGE  ;
+echo '<br /> Start at:' . $start;
+$end = $page * FILES_PER_PAGE;
+if ($end > $fileCount) { $end = $fileCount - 1; }
+echo '<br /> End at: ' . $end;
 // Check if the dir exists
 ?>
 <!DOCTYPE html>
@@ -41,7 +58,7 @@ $fileUtility = new FileUtility();
     <h1>Photo archive</h1>
     <div class="right">
       Viewing: /<?php echo $dir ?><br />
-      files: <?php echo $theDir->getFileCount(); ?>
+      files: <?php echo ($start + 1) . ' to ' . $end . ' of ' . $fileCount; ?>
     </div>
   </header>
   <main>
@@ -103,7 +120,8 @@ $fileUtility = new FileUtility();
         }
       }
 
-      foreach ($theDir->getFiles() as $key => $value)
+
+      foreach (array_slice($theDir->getFiles(), $start, $end) as $key => $value)
       {
         $ext = $fileUtility->getExtension($value);
         if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'gif' || $ext == 'tiff')
