@@ -13,7 +13,7 @@ class FileUtility
     if (!file_exists($thumb))
     {
       // Attempt to create the thumb
-      shell_exec('convert ' . $anImage . ' -resize ' . THUMB_MAX_WIDTH * 1.5 . 'x' . THUMB_MAX_HEIGHT * 1.5 . ' ' . $thumb);
+      shell_exec('convert ' . $anImage . ' -resize ' . THUMB_MAX_WIDTH * 1.5 . 'x' . THUMB_MAX_HEIGHT * 1.5 . ' ' . $thumb . ' && chmod 0777 ' . $thumb);
       // Check if the thumb exists and return as appropriate
       if (file_exists($thumb))
       {
@@ -30,6 +30,16 @@ class FileUtility
     }
   }
 
+  private function createThumbMagik($anImage, $thumb)
+  {
+
+  }
+
+  private function createThumbGD($anImage, $thumb)
+  {
+    
+  }
+
   /**
    * [createThumbDirectory description]
    * @param  [type] $aDirectory [description]
@@ -40,10 +50,12 @@ class FileUtility
     $thumbDir = ARCHIVE_THUMBS . $aDirectory;
     // Check if the thumbs dir exists
     if (!file_exists($thumbDir)) {
-      mkdir($thumbDir, 0777, true);
+      shell_exec('mkdir -m 777 ' . $thumbDir);
+      //mkdir($thumbDir, 0777, true);
       // Check if the thumb dir exists and return appropriate
       if (file_exists($thumbDir))
       {
+
         return true;
       }
       else
