@@ -34,3 +34,8 @@ define('CREATE_NULL_INDEX_ON_LOAD', true);
  * Pagination
  */
 define('FILES_PER_PAGE', 50); // Does not include navigation items
+
+/**
+ * Cron log file name
+ */
+define('CRON_LOG', 'cron.log');
