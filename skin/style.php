@@ -131,6 +131,13 @@ footer a:hover {
   background-image: url(../inc/images/document.png);
 }
 
+.prevPage {
+  background-image: url(../inc/images/prev.png);
+}
+
+.nextPage {
+  background-image: url(../inc/images/next.png);
+
 /**
  * FancyBox download button
  */

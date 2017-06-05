@@ -23,19 +23,10 @@ $fileUtility = new FileUtility();
 
 $fileCount = $theDir->getFileCount();
 
-if ($fileCount > FILES_PER_PAGE) {
-  if ($page > 1)
-  {
-    echo 'Back a page';
-  }
-  echo $fileCount/FILES_PER_PAGE . 'pages';
-}
-
-$start = $page * FILES_PER_PAGE - FILES_PER_PAGE  ;
-echo '<br /> Start at:' . $start;
+$numPages = ceil($fileCount / FILES_PER_PAGE);
+$start = $page * FILES_PER_PAGE - FILES_PER_PAGE;
 $end = $page * FILES_PER_PAGE;
-if ($end > $fileCount) { $end = $fileCount - 1; }
-echo '<br /> End at: ' . $end;
+if ($end > $fileCount) { $end = $fileCount; }
 // Check if the dir exists
 ?>
 <!DOCTYPE html>
@@ -58,7 +49,14 @@ echo '<br /> End at: ' . $end;
     <h1>Photo archive</h1>
     <div class="right">
       Viewing: /<?php echo $dir ?><br />
-      files: <?php echo ($start + 1) . ' to ' . $end . ' of ' . $fileCount; ?>
+      files:
+      <?php
+      if ($fileCount > FILES_PER_PAGE)
+      {
+        echo ($start + 1) . ' to ' . $end . ' of ';
+      }
+      echo $fileCount;
+      ?>
     </div>
   </header>
   <main>
@@ -75,6 +73,33 @@ echo '<br /> End at: ' . $end;
             <span>Parent</span>
           </div>
         </a>';
+      }
+
+      if ($fileCount > FILES_PER_PAGE)
+      {
+        if ($page > 1)
+        {
+          echo '
+          <a href="?dir=' . $theDir->getDir() . '&page=' . ($page - 1) . '">
+            <div class="item">
+              <div class="icon prevPage">
+              </div>
+              <span>Previous Page</span>
+            </div>
+          </a>';
+        }
+
+        if ($page < $numPages)
+        {
+          echo '
+          <a href="?dir=' . $theDir->getDir() . '&page=' . ($page + 1) . '">
+            <div class="item">
+              <div class="icon nextPage">
+              </div>
+              <span>Next Page</span>
+            </div>
+          </a>';
+        }
       }
 
       // Show sub dir buttons
