@@ -9,6 +9,14 @@ $fileUtil = new FileUtility();
 // Open the log file
 $logFile = file_get_contents(CRON_LOG);
 
+// Method
+if (GD_THUMBS) {
+  $method = 'GD Library';
+}
+else {
+  $method = 'ImageMagick';
+}
+
 // Create null indexes at root levelif they don't exist
 if (!file_exists(ARCHIVE_MAIN . '/index.php')) {
   touch(ARCHIVE_MAIN . '/index.php');
@@ -30,7 +38,6 @@ foreach($objects as $name => $object){
   if (substr($name, -1) != '.') {
     // Get the thumb alternative
     $thumb = str_replace(ARCHIVE_MAIN, ARCHIVE_THUMBS, $name);
-
     if (is_dir($name)) {
       if ($fileUtil->createThumbDir(str_replace(ARCHIVE_MAIN, '', $name))) {
         $string = date("Y-m-d, h:i:s") . ' Created DIR: ' . realpath($thumb);
@@ -53,7 +60,12 @@ foreach($objects as $name => $object){
     }
     elseif (preg_match('/(jpg|jpeg|gif|tiff|png)/i',$name)) {
       if ($fileUtil->createThumb($name)) {
-        $string = date("Y-m-d, h:i:s") . ' Created IMG: ' . realpath($thumb);
+        $string = date("Y-m-d, h:i:s") . ' Created IMG: ' . realpath($thumb) . ' using: ' . $method;
+        echo $string . '<br />';
+        $logFile .= $string . "\n";
+      }
+      else {
+        $string = date("Y-m-d, h:i:s") . ' Failed to create IMG: ' . realpath($thumb) . ' using: ' . $method;
         echo $string . '<br />';
         $logFile .= $string . "\n";
       }
