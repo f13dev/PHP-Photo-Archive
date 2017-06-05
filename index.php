@@ -9,6 +9,7 @@ if (isset($_GET['dir'])) { $dir = $_GET['dir']; } else { $dir = ''; }
 // Get the page to view
 if (isset($_GET['page']) && ctype_digit($_GET['page'])) { $page = $_GET['page']; } else { $page = 1; }
 
+// Check that the directory exists
 try
 {
   $theDir = new Dir($dir);
@@ -21,13 +22,11 @@ catch (Exception $e)
 
 $fileUtility = new FileUtility();
 
-$fileCount = $theDir->getFileCount();
-
-$numPages = ceil($fileCount / FILES_PER_PAGE);
-$start = $page * FILES_PER_PAGE - FILES_PER_PAGE;
-$end = $page * FILES_PER_PAGE;
-if ($end > $fileCount) { $end = $fileCount; }
-// Check if the dir exists
+$fileCount = $theDir->getFileCount(); // Get the number of files
+$numPages = ceil($fileCount / FILES_PER_PAGE); // Get the number of pages
+$start = $page * FILES_PER_PAGE - FILES_PER_PAGE; // Set the start file
+$end = $page * FILES_PER_PAGE; // Set the end file
+if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than number of files
 ?>
 <!DOCTYPE html>
 <html>
