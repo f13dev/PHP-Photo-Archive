@@ -145,7 +145,7 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
       }
 
 
-      foreach (array_slice($theDir->getFiles(), $start, $end) as $key => $value)
+      foreach (array_slice($theDir->getFiles(), $start, FILES_PER_PAGE) as $key => $value)
       {
         $ext = $fileUtility->getExtension($value);
         if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'gif' || $ext == 'tiff')
