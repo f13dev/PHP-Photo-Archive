@@ -15,7 +15,7 @@ define('CSS_MOBILE','mobile.css');
  */
 define('THUMB_MAX_WIDTH', 150);
 define('THUMB_MAX_HEIGHT', 150);
-define('GD_THUMBS', true); //Set to true to use GD library or false to use ImageMagick
+define('GD_THUMBS', false); //Set to true to use GD library or false to use ImageMagick
 
 /**
  * Define the images and thumbs directories,

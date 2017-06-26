@@ -36,6 +36,9 @@ class FileUtility
 
   private function createThumbMagik($anImage, $thumb)
   {
+    // Add slashes to spaces in filename
+    $anImage = str_replace(' ', '\ ', $anImage);
+    $thumb = str_replace(' ', '\ ', $thumb);
     // Attempt to create the thumb
     shell_exec('convert ' . $anImage . ' -resize ' . THUMB_MAX_WIDTH * 1.5 . 'x' . THUMB_MAX_HEIGHT * 1.5 . ' ' . $thumb . ' && chmod 0777 ' . $thumb);
   }
@@ -84,7 +87,8 @@ class FileUtility
    */
   function createThumbDir($aDirectory)
   {
-    $thumbDir = ARCHIVE_THUMBS . $aDirectory;
+    // Enclosed in quotes to allow unix to recognise spaces
+    $thumbDir = '"' . ARCHIVE_THUMBS . $aDirectory . '"';
     // Check if the thumbs dir exists
     if (!file_exists($thumbDir)) {
       shell_exec('mkdir -m 777 ' . $thumbDir);

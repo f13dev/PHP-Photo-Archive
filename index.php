@@ -166,7 +166,7 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
             echo '
             <a href="' . $value . '" data-fancybox="gallery" data-caption="' . $key . '">
               <div class="item" caption="' . $key . '">
-                <div class="icon" style="background-image: url(' . $thumb . ')">
+                <div class="icon" style="background-image: url(' . str_replace(' ','\ ',$thumb) . ')">
                 </div>
                 <span>' . $key . '</span>
               </div>
