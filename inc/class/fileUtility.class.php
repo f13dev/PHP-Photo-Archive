@@ -88,7 +88,7 @@ class FileUtility
   function createThumbDir($aDirectory)
   {
     // Enclosed in quotes to allow unix to recognise spaces
-    $thumbDir = '"' . ARCHIVE_THUMBS . $aDirectory . '"';
+    $thumbDir = ARCHIVE_THUMBS . str_replace(' ', '\ ', $aDirectory);
     // Check if the thumbs dir exists
     if (!file_exists($thumbDir)) {
       shell_exec('mkdir -m 777 ' . $thumbDir);
@@ -96,7 +96,6 @@ class FileUtility
       // Check if the thumb dir exists and return appropriate
       if (file_exists($thumbDir))
       {
-
         return true;
       }
       else

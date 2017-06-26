@@ -152,7 +152,7 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
         {
 
           // Process images
-            if (CREATE_THUMBS_ON_LOAD && $thumbsDirExists)
+            if (CREATE_THUMBS_ON_LOAD && ($thumbsDirExists || $thumbsDirExists == null))
             {
               $fileUtility->createThumb($value);
             }
