@@ -19,5 +19,5 @@ if ($ext == 'mp4' || $ext == 'webm' || $ext == 'ogg')
 }
 else
 {
-  echo 'The supplied video file is not currently supported';
+  echo 'The supplied video file is not currently supported!';
 }
