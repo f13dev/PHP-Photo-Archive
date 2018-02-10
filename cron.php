@@ -39,35 +39,48 @@ foreach($objects as $name => $object){
     // Get the thumb alternative
     $thumb = str_replace(ARCHIVE_MAIN, ARCHIVE_THUMBS, $name);
     if (is_dir($name)) {
-      if ($fileUtil->createThumbDir(str_replace(ARCHIVE_MAIN, '', $name))) {
-        $string = date("Y-m-d, h:i:s") . ' Created DIR: ' . realpath($thumb);
-        echo $string . '<br />';
-        $logFile .= $string . "\n";
+      if (!file_exists($thumb)) {
+        if ($fileUtil->createThumbDir(str_replace(ARCHIVE_MAIN, '', $name))) {
+          $string = date("Y-m-d, h:i:s") . ' Created DIR: ' . realpath($thumb);
+          echo $string . "<br />\n";
+          $logFile .= $string . "\n";
+        }
+        else {
+          $string = date("Y-m-d, h:i:s") . ' Failed to create DIR: ' . realpath($thumb);
+          echo $string . "<br />\n";
+          $logFile .= $string . "\n";
+        }
       }
       // Create null indexes if they don't exist
       if (!file_exists($name . '/index.php')) {
         touch($name . '/index.php');
         $string = date("Y-m-d, h:i:s") . ' Created NUL: ' . realpath($name . '/index.php');
-        echo $string . '<br />';
+        echo $string . "<br />\n";
         $logFile .= $string . "\n";
       }
       if (!file_exists($thumb . '/index.php')) {
         touch ($thumb . '/index.php');
         $string = date("Y-m-d, h:i:s") . ' Created NUL: ' . realpath($thumb . '/index.php');
-        echo $string . '<br />';
+        echo $string . "<br />\n";
         $logFile .= $string . "\n";
       }
     }
     elseif (preg_match('/(jpg|jpeg|gif|tiff|png)/i',$name)) {
-      if ($fileUtil->createThumb($name)) {
-        $string = date("Y-m-d, h:i:s") . ' Created IMG: ' . realpath($thumb) . ' using: ' . $method;
-        echo $string . '<br />';
-        $logFile .= $string . "\n";
-      }
-      else {
-        $string = date("Y-m-d, h:i:s") . ' Failed to create IMG: ' . realpath($thumb) . ' using: ' . $method;
-        echo $string . '<br />';
-        $logFile .= $string . "\n";
+      // Check if the thumb already exists
+      $fileName = explode('/', $name);
+      $fileName = end($fileName);
+      if (!$fileUtil->thumbExists($name) && $fileName[0] != '.')
+      {
+        if ($fileUtil->createThumb($name)) {
+          $string = date("Y-m-d, h:i:s") . ' Created IMG: ' . realpath($thumb) . ' using: ' . $method;
+          echo $string . "<br />\n";
+          $logFile .= $string . "\n";
+        }
+        else {
+          $string = date("Y-m-d, h:i:s") . ' Failed to create IMG: ' . realpath($thumb) . ' using: ' . $method;
+          echo $string . "<br />\n";
+          $logFile .= $string . "\n";
+        }
       }
     }
   }
@@ -80,7 +93,7 @@ foreach($objects as $thumb => $object){
   if (substr($thumb, -1) != '.' && !is_dir($thumb) && !file_exists($main))
   {
     $string = date("Y-m-d, h:i:s") . ' Removing FIL: ' . realpath($thumb);
-    echo $string . '<br />';
+    echo $string . "<br />\n";
     $logFile .= $string . "\n";
     shell_exec('rm -rf ' . str_replace(' ', '\ ', $thumb));
   }
@@ -99,7 +112,7 @@ foreach($objects as $thumb => $object){
 // Remove all directories in the toRemove array
 foreach ($toRemove as $directory) {
   $string = date("Y-m-d, h:i:s") . ' Created DIR: ' . realpath($directory);
-  echo $string . '<br />';
+  echo $string . "<br />\n";
   $logFile .= $string . "\n";
   shell_exec('rm -rf ' . str_replace(' ', '\ ', $directory));
 }
