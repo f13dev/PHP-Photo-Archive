@@ -8,6 +8,11 @@ require_once('../inc/settings.php');
 /**
  * CSS start
  */
+
+html {
+  padding-bottom: 3em;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -37,10 +42,16 @@ header {
   background: #676767;
   color: #eee;
   border-bottom: 0.2em solid #000;
+  z-index:99;
 }
 
 header > h1 {
   margin-left: 1em;
+}
+
+header > h1 > a {
+  color: #fff;
+  text-decoration: none;
 }
 
 header > .right {
@@ -89,6 +100,9 @@ footer a:hover {
   text-align: center;
   border: 1px solid #ddd;
   margin: 0.3em;
+  overflow: hidden;
+  width: 10em;
+  height: 12.5em;
 }
 
 .item:hover {

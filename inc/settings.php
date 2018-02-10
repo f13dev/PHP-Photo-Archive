@@ -1,8 +1,18 @@
 <?php
 /**
- * Owner information
+ * Owner information (used for copyright text)
  */
 define('COPYRIGHT_HOLDER','F13Dev');
+
+/**
+ * Set site language
+ */
+ define('SITE_LANG', 'en');
+
+/**
+ * Site title (shown at the top of page)
+ */
+ define('SITE_TITLE', 'Photo archive');
 
 /**
  * Define the CSS files to use
@@ -32,7 +42,7 @@ define('CREATE_THUMBS_ON_LOAD', true); // Can create excessively slow page loads
 /**
  * Pagination
  */
-define('FILES_PER_PAGE', 5); // Does not include navigation items
+define('FILES_PER_PAGE', 50); // Does not include navigation items
 
 /**
  * Cron log file name

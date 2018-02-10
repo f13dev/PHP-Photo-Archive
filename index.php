@@ -1,8 +1,11 @@
 <?php
 // Load the settings file
 require_once('inc/settings.php');
+// Load utility classes
 require_once('inc/class/dir.class.php');
 require_once('inc/class/fileUtility.class.php');
+// Load the language file
+require_once('inc/lang/' . SITE_LANG . '.lang.php');
 
 // Get the dir to view
 if (isset($_GET['dir'])) { $dir = $_GET['dir']; } else { $dir = ''; }
@@ -16,7 +19,7 @@ try
 }
 catch (Exception $e)
 {
-  echo 'The requested directory could not be found!';
+  echo LANG_DIR_NOT_FOUND;
   exit();
 }
 
@@ -31,28 +34,34 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
+  <title><?php echo $_GET['dir']; ?></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Load stylesheets -->
   <link rel="stylesheet" href="skin/<?php echo CSS_MAIN; ?>">
   <link rel="stylesheet" href="skin/<?php echo CSS_MOBILE; ?>">
+<!--
   <link  href="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.css" rel="stylesheet">
+-->
 
+  <link href="inc/fancybox.css" rel="stylesheet">
   <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.js"></script>
+  <script src="inc/fancybox.js"></script>
 
+<!--
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.js"></script>
+-->
 
 </head>
 <body>
   <header>
-    <h1>Photo archive</h1>
+    <h1><a href="?dir="><?php echo SITE_TITLE; ?></a></h1>
     <div class="right">
-      Viewing: /<?php echo $dir ?><br />
-      files:
+      <?php echo LANG_VIEWING; ?>: /<?php echo $dir ?><br />
+      <?php echo LANG_FILES; ?>:
       <?php
       if ($fileCount > FILES_PER_PAGE)
       {
-        echo ($start + 1) . ' to ' . $end . ' of ';
+        echo ($start + 1) . ' ' . LANG_TO . ' ' . $end . ' ' . LANG_OF . ' ';
       }
       echo $fileCount;
       ?>
@@ -69,7 +78,7 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
           <div class="item">
             <div class="icon upDir">
             </div>
-            <span>Parent</span>
+            <span>' . LANG_PARENT . '</span>
           </div>
         </a>';
       }
@@ -83,7 +92,7 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
             <div class="item">
               <div class="icon prevPage">
               </div>
-              <span>Previous Page</span>
+              <span>' . LANG_PREV . '</span>
             </div>
           </a>';
         }
@@ -95,7 +104,7 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
             <div class="item">
               <div class="icon nextPage">
               </div>
-              <span>Next Page</span>
+              <span>' . LANG_NEXT . '</span>
             </div>
           </a>';
         }
@@ -212,7 +221,7 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
   </script>
   <footer>
     <div class="center">
-      Copyright &copy; <?php echo COPYRIGHT_HOLDER; ?> (<?php echo date("Y"); ?>) - Powered by: <a href="http://f13dev.com">PHP Photo Archive</a>
+      <?php echo LANG_COPYRIGHT; ?> &copy; <?php echo COPYRIGHT_HOLDER; ?> (<?php echo date("Y"); ?>) - <?php echo LANG_POWERED_BY; ?>: <a href="http://f13dev.com">PHP Photo Archive</a>
     </div>
   </footer>
 </body>
