@@ -3,15 +3,32 @@ class FileUtility
 {
 
   /**
+   * Checks if a thumnail exists for an image
+   * @param String $anImage The path of an image
+   * @return Bool Thumb exists
+   */
+  function thumbExists($anImage)
+  {
+    $thumb = str_replace(ARCHIVE_MAIN, ARCHIVE_THUMBS, $anImage);
+    if (file_exists($thumb)) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  /**
    * Creates a thumbnail from an image
    * @param  String $anImage The path of an image
    * @return Bool   Created successfully
    */
   function createThumb($anImage)
   {
-    $thumb = str_replace(ARCHIVE_MAIN, ARCHIVE_THUMBS, $anImage);
-    if (!file_exists($thumb))
+    if (!$this->thumbExists($anImage))
     {
+      // Set thumb dir
+      $thumb = str_replace(ARCHIVE_MAIN, ARCHIVE_THUMBS, $anImage);
       if (GD_THUMBS) {
         $this->createThumbGD($anImage, $thumb);
       }
@@ -81,6 +98,22 @@ class FileUtility
   }
 
   /**
+   * Checks to see if a thumb dir exists for the given gallery dir
+   * @param String $aDirectory
+   * @return Bool The directory exitst
+   */
+  function thumbDirExists($aDirectory)
+  {
+    $thumbDir = ARCHIVE_THUMBS . $aDirectory;
+    if (file_exists("'$thumbDir'")) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  /**
    * [createThumbDirectory description]
    * @param  [type] $aDirectory [description]
    * @return [type]             [description]
@@ -88,10 +121,10 @@ class FileUtility
   function createThumbDir($aDirectory)
   {
     // Enclosed in quotes to allow unix to recognise spaces
-    $thumbDir = ARCHIVE_THUMBS . str_replace(' ', '\ ', $aDirectory);
     // Check if the thumbs dir exists
-    if (!file_exists($thumbDir)) {
-      shell_exec('mkdir -m 777 ' . $thumbDir);
+    if (!$this->thumbDirExists($aDirectory)) {
+      $thumbDir = ARCHIVE_THUMBS . $aDirectory;
+      shell_exec("mkdir -m 777 '$thumbDir'");
       //mkdir($thumbDir, 0777, true);
       // Check if the thumb dir exists and return appropriate
       if (file_exists($thumbDir))
