@@ -76,7 +76,7 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
         echo '
         <a href="?dir=' . $theDir->getParentDir() . '">
           <div class="item">
-            <div class="icon upDir">
+            <div class="icon upDir fixed">
             </div>
             <span>' . LANG_PARENT . '</span>
           </div>
@@ -90,7 +90,7 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
           echo '
           <a href="?dir=' . $theDir->getDir() . '&page=' . ($page - 1) . '">
             <div class="item">
-              <div class="icon prevPage">
+              <div class="icon prevPage fixed">
               </div>
               <span>' . LANG_PREV . '</span>
             </div>
@@ -102,7 +102,7 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
           echo '
           <a href="?dir=' . $theDir->getDir() . '&page=' . ($page + 1) . '">
             <div class="item">
-              <div class="icon nextPage">
+              <div class="icon nextPage fixed">
               </div>
               <span>' . LANG_NEXT . '</span>
             </div>
@@ -116,7 +116,7 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
         echo '
         <a href="?dir=' . $value . '">
           <div class="item">
-            <div class="icon subDir">
+            <div class="icon subDir fixed">
             </div>
             <span>' . $key . '</span>
           </div>
@@ -129,7 +129,7 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
         echo '
         <a href="inc/notes.php?file=' . $value . '" data-fancybox data-type="ajax">
           <div class="item" caption="' . $key . '">
-            <div class="icon notes">
+            <div class="icon notes fixed">
             </div>
             <span>' . $key . '</span>
           </div>
@@ -167,10 +167,14 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
             }
 
             $thumb = str_replace(ARCHIVE_MAIN, ARCHIVE_THUMBS, $value);
+            $mid = str_replace(ARCHIVE_MAIN, ARCHIVE_MID, $value);
 
             // If thumb doesnt exist, use full image
             if (!file_exists($thumb)) {
               $thumb = $value;
+            }
+            if (file_exists($mid) && ENABLE_MID_IMAGES) {
+              $value = $mid;
             }
             echo '
             <a href="' . $value . '" data-fancybox="gallery" data-caption="' . $key . '">
@@ -187,7 +191,7 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
             echo '
             <a href="inc/video.php?file=' . $value . '" data-fancybox="gallery" data-type="iframe" data-caption="' . $key . '">
               <div class="item" caption="' . $key . '">
-                <div class="icon video">
+                <div class="icon video fixed">
                 </div>
                 <span>' . $key . '</span>
               </div>
