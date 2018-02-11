@@ -180,4 +180,5 @@ If you have SSH access to a Linux based server the crontab can be edited with th
 This will open a basic text editor where you can type the cron command to run the script. To save the cron job press ```[ctrl] + o``` followed by ```[enter]``` and finally ```[ctrl] + x``` to exit the text editor
 ## License
 Photo archive - [MIT License](LICENSE)
+
 Colorbox - [MIT License](inc/colorbox/LICENSE)
