@@ -40,9 +40,9 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
   <link rel="stylesheet" href="skin/<?php echo CSS_MAIN; ?>">
   <link rel="stylesheet" href="skin/<?php echo CSS_MOBILE; ?>">
   <!-- Load colorbox -->
-  <link rel="stylesheet" href="inc/colorbox.css" />
+  <link rel="stylesheet" href="inc/colorbox/colorbox.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script src="inc/jquery.colorbox.js"></script>
+  <script src="inc/colorbox/jquery.colorbox.js"></script>
   <script>
     $(document).ready(function(){
       //Set up colorbox
