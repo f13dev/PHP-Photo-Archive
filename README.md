@@ -103,11 +103,11 @@ When set to true, cron will generate mid sized images for previewing. This uses 
 This will change the maximum dimensions of the reduced size images created by cron. If ```ENABLE_MID_IMAGES``` is set to false, these details are ignored.
 
 #### Setting the archive folders
-```define('ARCHIVE_MAIN', 'archive/images/');```
-
-```define('ARCHIVE_MID', 'archive/mid/');```
-
-```define('ARCHIVE_THUMBS', 'archive/thumbs/');```
+```php
+define('ARCHIVE_MAIN', 'archive/images/');
+define('ARCHIVE_MID', 'archive/mid/');
+define('ARCHIVE_THUMBS', 'archive/thumbs/');
+```
 
 The directory shown here is the relative path from the gallery script. If ```ENABLE_MID_IMAGES``` is set to false, ```ARCHIVE_MID``` will be ignored.
 
