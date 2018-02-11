@@ -69,11 +69,23 @@ Create a standard txt file using any plain text editor and upload it to the dire
 ### Settings
 
 ### Managing archive maintenance via CRON
+#### How to write a CRON command
 In order to enable automatic maintenance via CRON you will need to create a cron job to run at your specified frequency.
 
 Cron jobs consist of 2 main parts; the first being the frequency that the job should run at split into 5 distinct sections: minute, hour, day of the month, month of the year, day of the week. Using an astrix (*) determines that it will run for every instance of that frequency.
 
 For example 0 1 * * * will run the cron job on the minute 0 of the first hour on every day of the month, every month of the year and every day of the week. i.e the script will run at 1am every day.
+
+The second part of the cron job is the command it should run. As the PHP script should run from the directory it resides in we would first need to change the directory; if the script resides in the directory '/var/www/html/gallery' then we would use:
+
+  CD /var/www/html/gallery
+
+Now we are in the correct gallery, we can run the script via PHP-CLI:
+
+  /usr/bin/php /var/www/html/gallery/cron.php
+
+So to finalise this command, assuming that the script is in the directory '/var/www/html/gallery' and we want to run the script at 1am every day, our command would be:
+  0 1 * * * CD /var/www/html/gallery && /usr/bin/php /var/www/html/gallery/cron.php
 
 ## License
 [BSD 3-Clause License](LICENSE)
