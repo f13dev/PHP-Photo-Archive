@@ -42,7 +42,7 @@ Format | Chrome | Firefox | Internet Explorer | Opera | Safari
 GIF  | YES | YES | YES | YES | YES
 JPG | YES | YES | YES | YES | YES
 PNG | YES | YES | YES | YES | YES
-TIFF | YES | YES | YES | YES | YES
+TIFF | NO | NO | YES | NO | YES
 
 And the following video formats
 
@@ -69,6 +69,11 @@ Create a standard txt file using any plain text editor and upload it to the dire
 ### Settings
 
 ### Managing archive maintenance via CRON
+In order to enable automatic maintenance via CRON you will need to create a cron job to run at your specified frequency.
+
+Cron jobs consist of 2 main parts; the first being the frequency that the job should run at split into 5 distinct sections: minute, hour, day of the month, month of the year, day of the week. Using an astrix (*) determines that it will run for every instance of that frequency.
+
+For example 0 1 * * * will run the cron job on the minute 0 of the first hour on every day of the month, every month of the year and every day of the week. i.e the script will run at 1am every day.
 
 ## License
 [BSD 3-Clause License](LICENSE)
