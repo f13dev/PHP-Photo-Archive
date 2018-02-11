@@ -23,7 +23,9 @@ Due to the way PHP Photo Archive is designed installation can be as simple as co
 
 If you prefer to you can always connect to your web server via SSH and use the following command to clone the repository.
 
-```git clone https://github.com/f13dev/PHP-Photo-Archive /path/to/install/to```
+```
+git clone https://github.com/f13dev/PHP-Photo-Archive /path/to/install/to
+```
 
 ## Using
 
