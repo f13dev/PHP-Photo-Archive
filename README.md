@@ -156,15 +156,21 @@ For example ```0 1 * * *``` will run the cron job on the minute 0 of the first h
 
 The second part of the cron job is the command it should run. As the PHP script should run from the directory it resides in we would first need to change the directory; if the script resides in the directory '/var/www/html/gallery' then we would use:
 
-```CD /var/www/html/gallery```
+```
+CD /var/www/html/gallery
+```
 
 Now we are in the correct gallery, we can run the script via PHP-CLI:
 
-```/usr/bin/php /var/www/html/gallery/cron.php```
+```
+/usr/bin/php /var/www/html/gallery/cron.php
+```
 
 So to finalise this command, assuming that the script is in the directory '/var/www/html/gallery' and we want to run the script at 1am every day, our command would be:
 
-```0 1 * * * CD /var/www/html/gallery && /usr/bin/php /var/www/html/gallery/cron.php```
+```
+0 1 * * * CD /var/www/html/gallery && /usr/bin/php /var/www/html/gallery/cron.php
+```
 
 #### Adding cron.php to the crontab
 There are many ways to add a cron job depending on the way your server is set up, if you are on a shared hosing plan then you will most likely have access to create cron jobs via the control panel (i.e. Plesk, cPanel etc...).
