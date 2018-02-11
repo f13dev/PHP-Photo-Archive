@@ -23,7 +23,7 @@ Due to the way PHP Photo Archive is designed installation can be as simple as co
 
 If you prefer to you can always connect to your web server via SSH and use the following command to clone the repository.
 
-    git clone https://github.com/f13dev/PHP-Photo-Archive /path/to/install/to
+```git clone https://github.com/f13dev/PHP-Photo-Archive /path/to/install/to```
 
 ## Using
 
@@ -78,14 +78,15 @@ For example 0 1 * * * will run the cron job on the minute 0 of the first hour on
 
 The second part of the cron job is the command it should run. As the PHP script should run from the directory it resides in we would first need to change the directory; if the script resides in the directory '/var/www/html/gallery' then we would use:
 
-  CD /var/www/html/gallery
+```CD /var/www/html/gallery```
 
 Now we are in the correct gallery, we can run the script via PHP-CLI:
 
-  /usr/bin/php /var/www/html/gallery/cron.php
+```/usr/bin/php /var/www/html/gallery/cron.php```
 
 So to finalise this command, assuming that the script is in the directory '/var/www/html/gallery' and we want to run the script at 1am every day, our command would be:
-  0 1 * * * CD /var/www/html/gallery && /usr/bin/php /var/www/html/gallery/cron.php
+
+```0 1 * * * CD /var/www/html/gallery && /usr/bin/php /var/www/html/gallery/cron.php```
 
 ## License
 [BSD 3-Clause License](LICENSE)
