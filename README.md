@@ -83,6 +83,7 @@ This will set the site title as shown at the top of the gallery.
 
 #### Setting the size of the thumbnails
 ```define('THUMB_MAX_WIDTH', 150);```
+
 ```define('THUMB_MAX_HEIGHT', 150);```
 This will change the maximum dimensions of the thumbnails created by cron.
 
