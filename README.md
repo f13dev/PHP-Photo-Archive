@@ -3,6 +3,7 @@ A simple photo archive and gallery tool for web servers. Designed with thought f
 
 Photo Archive does not require any form of database. Simply create folders; drag and drop image to create your archive.
 
+1. [Live demo](#live-demo)
 1. [Requirements](#requirements)
 1. [Installing](#installing)
 1. [Using](#using)
@@ -12,6 +13,9 @@ Photo Archive does not require any form of database. Simply create folders; drag
     1. [Settings](#settings)
     1. [Managing archive maintenance via CRON](#managing-archive-maintenance-via-cron)
 1. [License](#license)
+
+## Live demo
+[View the live demo](https://f13dev.com/PHP-Photo-Archive)
 
 ## Requirements
 * Apache/Nginx/Other web server
