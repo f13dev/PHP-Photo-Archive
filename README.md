@@ -71,14 +71,17 @@ To simplify setting up your gallery, all major settings are defined in a single 
 
 #### Set the copyright copyright holder
 ```define('COPYRIGHT_HOLDER', 'your name');```
+
 This will alter the copyright text shown on the footer of the gallery.
 
 #### Set the site language
 ```define('SITE_LANG', 'en');```
+
 This will set the site language file to load the the content of ```inc/lang/en.lang.php```.
 
 #### Set the site title
 ```define('SITE_TITLE', 'My site title');```
+
 This will set the site title as shown at the top of the gallery.
 
 #### Setting the size of the thumbnails
@@ -89,31 +92,40 @@ This will change the maximum dimensions of the thumbnails created by cron.
 
 #### Enable reduced images for previews
 ```define('ENABLE_MID_IMAGES', true);```
+
 When set to true, cron will generate mid sized images for previewing. This uses more hard drive space but can drastically reduce page loading times. When set to false, less hard drive space is used but page loading times will be longer.
 
 #### Setting the size of reduced size images
-```define('IMG_MAX_WIDTH', 1920);
-define('IMG_MAX_HEIGHT', 1080);```
+```define('IMG_MAX_WIDTH', 1920);```
+
+```define('IMG_MAX_HEIGHT', 1080);```
+
 This will change the maximum dimensions of the reduced size images created by cron. If ```ENABLE_MID_IMAGES``` is set to false, these details are ignored.
 
 #### Setting the archive folders
-```define('ARCHIVE_MAIN', 'archive/images/');
-define('ARCHIVE_MID', 'archive/mid/');
-define('ARCHIVE_THUMBS', 'archive/thumbs/');```
+```define('ARCHIVE_MAIN', 'archive/images/');```
+
+```define('ARCHIVE_MID', 'archive/mid/');```
+
+```define('ARCHIVE_THUMBS', 'archive/thumbs/');```
+
 The directory shown here is the relative path from the gallery script. If ```ENABLE_MID_IMAGES``` is set to false, ```ARCHIVE_MID``` will be ignored.
 
 #### Create thumbs on page load
 ```define('CREATE_THUMBS_ON_LOAD', true);```
+
 If this is set to true then thumbs will be created as you brows the gallery.
 
 At present this function does not work.
 
 #### Set how many images to show on each page
 ```define('FILES_PER_PAGE', 50);```
+
 This will show a maximum of 50 images on each page, a gallery with more than 50 images will be split over multiple pages.
 
 #### Set the cron log file
-define('CRON_LOG', cron.log);```
+```define('CRON_LOG', cron.log);```
+
 This sets the filename for the log file used by cron relative to the gallery script.
 
 ### Managing archive maintenance via CRON
