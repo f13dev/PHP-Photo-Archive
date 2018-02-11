@@ -137,7 +137,7 @@ foreach($objects as $thumb => $object){
 }
 
 // Third iterator, searching thumbs dir for empty dir to remove
-$toRemove = [];
+$toRemove = array();
 $objects = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(ARCHIVE_THUMBS), RecursiveIteratorIterator::SELF_FIRST);
 foreach($objects as $thumb => $object){
   $main = str_replace(ARCHIVE_THUMBS, ARCHIVE_MAIN, $thumb);
