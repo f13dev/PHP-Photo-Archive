@@ -88,5 +88,11 @@ So to finalise this command, assuming that the script is in the directory '/var/
 
 ```0 1 * * * CD /var/www/html/gallery && /usr/bin/php /var/www/html/gallery/cron.php```
 
+#### Adding cron.php to the crontab
+There are many ways to add a cron job depending on the way your server is set up, if you are on a shared hosing plan then you will most likely have access to create cron jobs via the control panel (i.e. Plesk, cPanel etc...).
+
+If you have SSH access to the server the crontab can be edited with the command:
+```crontab -e```
+This will open a basic text editor where you can type the cron command to run the script. To save the cron job press ```[ctrl] + o``` followed by ```[enter]``` and finally ```[ctrl] + x``` to exit the text editor
 ## License
 [BSD 3-Clause License](LICENSE)
