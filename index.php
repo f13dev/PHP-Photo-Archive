@@ -39,18 +39,39 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
   <!-- Load stylesheets -->
   <link rel="stylesheet" href="skin/<?php echo CSS_MAIN; ?>">
   <link rel="stylesheet" href="skin/<?php echo CSS_MOBILE; ?>">
-<!--
-  <link  href="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.css" rel="stylesheet">
--->
-
-  <link href="inc/fancybox.css" rel="stylesheet">
-  <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
-  <script src="inc/fancybox.js"></script>
-
-<!--
-  <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.js"></script>
--->
-
+  <!-- Load colorbox -->
+  <link rel="stylesheet" href="inc/colorbox.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="inc/jquery.colorbox.js"></script>
+  <script>
+    $(document).ready(function(){
+      //Set up colorbox
+      $(".gallery").colorbox({rel:'gallery',maxWidth:'95%',maxHeight:'95%',title: function(){
+        var url = $(this).attr('orig-file');
+        var title = $(this).attr('title');
+        return '<a download href="' + url + '" target="_blank">' +
+          '<img src="inc/images/download.png">' +
+        '</a> ' +
+        title;
+      }});
+      $(".iframe").colorbox({rel:'gallery',iframe:true, width:"95%", height:"95%", title: function(){
+        var url = $(this).attr('orig-file');
+        var title = $(this).attr('title');
+        return '<a download href="' + url + '" target="_blank">' +
+          '<img src="inc/images/download.png">' +
+        '</a> ' +
+        title;
+      }});
+      $(".ajax").colorbox({width:'90%', height:'90%'});
+      $(".callbacks").colorbox({
+        onOpen:function(){ alert('onOpen: colorbox is about to open'); },
+        onLoad:function(){ alert('onLoad: colorbox has started to load the targeted content'); },
+        onComplete:function(){ alert('onComplete: colorbox has displayed the loaded content'); },
+        onCleanup:function(){ alert('onCleanup: colorbox has begun the close process'); },
+        onClosed:function(){ alert('onClosed: colorbox has completely closed'); }
+      });
+    });
+  </script>
 </head>
 <body>
   <header>
@@ -127,7 +148,7 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
       foreach ($theDir->getNotes() as $key => $value)
       {
         echo '
-        <a href="inc/notes.php?file=' . $value . '" data-fancybox data-type="ajax">
+        <a href="inc/notes.php?file=' . $value . '" class="ajax">
           <div class="item" caption="' . $key . '">
             <div class="icon notes fixed">
             </div>
@@ -169,15 +190,16 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
             $thumb = str_replace(ARCHIVE_MAIN, ARCHIVE_THUMBS, $value);
             $mid = str_replace(ARCHIVE_MAIN, ARCHIVE_MID, $value);
 
-            // If thumb doesnt exist, use full image
+            // If thumb doesn't exist, use full image
             if (!file_exists($thumb)) {
               $thumb = $value;
             }
-            if (file_exists($mid) && ENABLE_MID_IMAGES) {
-              $value = $mid;
+            // If mid doesn't exists, use full image
+            if (!file_exists($mid) && ENABLE_MID_IMAGES) {
+              $mid = $value;
             }
             echo '
-            <a href="' . $value . '" data-fancybox="gallery" data-caption="' . $key . '">
+            <a href="' . $mid . '" class="gallery" orig-file="' . $value . '" title=" ' . $key . '">
               <div class="item" caption="' . $key . '">
                 <div class="icon" style="background-image: url(' . str_replace(' ','\ ',$thumb) . ')">
                 </div>
@@ -187,9 +209,8 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
         }
         elseif ($ext == 'mp4' || $ext == 'webm' || $ext == 'ogg')
         {
-            // deal with mp4
             echo '
-            <a href="inc/video.php?file=' . $value . '" data-fancybox="gallery" data-type="iframe" data-caption="' . $key . '">
+            <a href="inc/video.php?file=' . $value . '&ext=' . $ext . '" class="iframe" orig-file="' . $value . '" title=" ' . $key . '" >
               <div class="item" caption="' . $key . '">
                 <div class="icon video fixed">
                 </div>
@@ -202,27 +223,7 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
       ?>
     </section>
   </main>
-  <script>
-  $( '[data-fancybox]' ).fancybox({
-  	onInit : function( instance ) {
-  		instance.$refs.downloadButton = $('<a class="fancybox-button fancybox-download" title="Download" download></a>')
-  			.appendTo( instance.$refs.buttons );
-  	},
-  	beforeMove: function( instance, current ) {
-  		instance.$refs.downloadButton.attr('href', current.src);
-  	}
-  });
 
-  $("[data-fancybox]").fancybox({
-      iframe : {
-          css : {
-              width  : '90%',
-              height : '90%'
-          }
-      }
-  });
-
-  </script>
   <footer>
     <div class="center">
       <?php echo LANG_COPYRIGHT; ?> &copy; <?php echo COPYRIGHT_HOLDER; ?> (<?php echo date("Y"); ?>) - <?php echo LANG_POWERED_BY; ?>: <a href="http://f13dev.com">PHP Photo Archive</a>
