@@ -17,6 +17,9 @@ else {
   $method = 'ImageMagick';
 }
 
+// Add a header to show that the cron has been run, even if no work is required
+$logFile .= date("Y-m-d, h:i:s") . " Cron started\n";
+
 // Create null indexes at root levelif they don't exist
 if (!file_exists(ARCHIVE_MAIN . '/index.php')) {
   touch(ARCHIVE_MAIN . '/index.php');
