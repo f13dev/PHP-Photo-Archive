@@ -39,10 +39,11 @@ $objects = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(ARCHIVE_
 foreach($objects as $name => $object){
   // Search and create directories and thumbs
   if (substr($name, -1) != '.') {
-    // Get the thumb alternative
     $thumb = str_replace(ARCHIVE_MAIN, ARCHIVE_THUMBS, $name);
     $mid = str_replace(ARCHIVE_MAIN, ARCHIVE_MID, $name);
+    // Get the thumb alternative
     if (is_dir($name)) {
+      // Create directories and null indexes
       if (!file_exists($thumb)) {
         if ($fileUtil->createThumbDir(str_replace(ARCHIVE_MAIN, '', $name), 'thumb')) {
           $string = date("Y-m-d, h:i:s") . ' Created DIR: ' . realpath($thumb);
@@ -89,6 +90,7 @@ foreach($objects as $name => $object){
         $logFile .= $string . "\n";
       }
     }
+    // Create thumbs for images
     elseif (preg_match('/(jpg|jpeg|gif|tiff|png)/i',$name)) {
       // Check if the thumb already exists
       $fileName = explode('/', $name);
@@ -120,6 +122,25 @@ foreach($objects as $name => $object){
         }
       }
     }
+    // Create thumbs for videos
+    elseif (preg_match('/(mp4|ogg|webm)/i',$name)) {
+      $fileName = explode('/', $name);
+      $fileName = end($fileName);
+      // if the video doesn't have a thumb
+      if (!$fileUtil->thumbExistsVideo($name))
+      {
+        if ($fileUtil->createThumbVideo($name)) {
+          $string = date("Y-m-d, h:i:s") . ' Created VID: ' . realpath($fileUtil->getVideoThumbName($name)) . ' using: ' . $method;
+          echo $string . "<br />\n";
+          $logFile .= $string . "\n";
+        }
+        else {
+          $string = date("Y-m-d, h:i:s") . ' Failed to create IMG: ' . realpath($fileUtil->getVideoThumbName($name)) . ' using: ' . $method;
+          echo $string . "<br />\n";
+          $logFile .= $string . "\n";
+        }
+      }
+    }
   }
 }
 
@@ -127,7 +148,8 @@ foreach($objects as $name => $object){
 $objects = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(ARCHIVE_THUMBS), RecursiveIteratorIterator::SELF_FIRST);
 foreach($objects as $thumb => $object){
   $main = str_replace(ARCHIVE_THUMBS, ARCHIVE_MAIN, $thumb);
-  if (substr($thumb, -1) != '.' && !is_dir($thumb) && !file_exists($main))
+  $video = $fileUtil->getVideoFromThumb($thumb);
+  if (substr($thumb, -1) != '.' && !is_dir($thumb) && !file_exists($main) && !file_exists($video))
   {
     $string = date("Y-m-d, h:i:s") . ' Removing FIL: ' . realpath($thumb);
     echo $string . "<br />\n";
@@ -137,7 +159,7 @@ foreach($objects as $thumb => $object){
 }
 
 // Third iterator, searching thumbs dir for empty dir to remove
-$toRemove = array();
+$toRemove = [];
 $objects = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(ARCHIVE_THUMBS), RecursiveIteratorIterator::SELF_FIRST);
 foreach($objects as $thumb => $object){
   $main = str_replace(ARCHIVE_THUMBS, ARCHIVE_MAIN, $thumb);
@@ -156,4 +178,5 @@ foreach ($toRemove as $directory) {
 
 // Write to the log file
 file_put_contents(CRON_LOG, $logFile);
+
 ?>

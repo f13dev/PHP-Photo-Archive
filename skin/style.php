@@ -123,7 +123,7 @@ footer a:hover {
   background-color: #f8f8f8;
   background-size: cover;
   background-repeat: no-repeat;
-  background-positon: center center;
+  background-positon: center;
   width: <?php echo THUMB_MAX_WIDTH; ?>px;
   height: <?php echo THUMB_MAX_HEIGHT; ?>px;
   margin: 0.3em;

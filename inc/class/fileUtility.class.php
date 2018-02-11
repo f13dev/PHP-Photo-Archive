@@ -3,6 +3,74 @@ class FileUtility
 {
 
   /**
+   *
+   */
+  function getVideoThumbName($aVideo)
+  {
+    $file = explode('/', $aVideo);
+    $file = end($file);
+    $thumb = 'vid_' . $file . '.png';
+    $thumb = str_replace($file, $thumb, $aVideo);
+    return str_replace(ARCHIVE_MAIN, ARCHIVE_THUMBS, $thumb);
+  }
+
+  /**
+   *
+   */
+  function getVideoFromThumb($aThumb)
+  {
+    // Get the actual file name
+    $thumb = explode('/', $aThumb);
+    $thumb = end($thumb);
+    // Remove the vid_ and .png sections of the name
+    $video = substr($thumb, 4, -4);
+    $video = str_replace($thumb, $video, $aThumb);
+    $video = str_replace(ARCHIVE_THUMBS, ARCHIVE_MAIN, $video);
+    if (strpos($thumb, 'vid_')) {
+      echo $video  . "\n";
+    }
+    return $video;
+  }
+  /**
+   * Checks if a video thumnail exists for a video
+   * @param String $aVideo The path of a video
+   * @return Bool Thumb exists
+   */
+  function thumbExistsVideo($aVideo)
+  {
+    $thumb = $this->getVideoThumbName($aVideo);
+    if (file_exists($thumb)) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  /**
+   * Creates a thumbnail of a video
+   * @param String $aVideo The path of a video
+   * @return Bool Thumb exists
+   */
+  function createThumbVideo($aVideo)
+  {
+    $thumb = $this->getVideoThumbName($aVideo);
+    $thumbTemp = $thumb . '.tmp.png';
+    $thumbTemp2 = $thumb . '.tmp2.png';
+    // create the thumb
+    shell_exec('convert "' . $aVideo . '"[1] "' . $thumbTemp . '"');
+    // resize the image
+    shell_exec('convert -quality 70 "' . $thumbTemp . '"  -resize ' . THUMB_MAX_WIDTH. 'x' . THUMB_MAX_HEIGHT . ' "' . $thumbTemp2 . '"');
+    // Add the watermark
+    shell_exec('composite  inc/images/video-overlay.png "' . $thumbTemp2 . '" "' . $thumb . '"');
+    return $this->thumbExistsVideo($aVideo);
+  }
+
+
+
+
+
+    /**
    * Checks if a thumnail exists for an image
    * @param String $anImage The path of an image
    * @return Bool Thumb exists

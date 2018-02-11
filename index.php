@@ -209,15 +209,22 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
         }
         elseif ($ext == 'mp4' || $ext == 'webm' || $ext == 'ogg')
         {
+
             echo '
             <a href="inc/video.php?file=' . $value . '&ext=' . $ext . '" class="iframe" orig-file="' . $value . '" title=" ' . $key . '" >
               <div class="item" caption="' . $key . '">
-                <div class="icon video fixed">
+                <div class="icon video fixed"';
+                  if ($fileUtility->thumbExistsVideo($value))
+                  {
+                    echo ' style="background-image: url(' . str_replace(' ','\ ',$fileUtility->getVideoThumbName($value)) . ')" ';
+                  }
+                echo '>
                 </div>
                 <span>' . $key . '</span>
               </div>
             </a>
             ';
+
         }
       }
       ?>
