@@ -56,8 +56,7 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
         return '<a download href="' + url + '" target="_blank">' +
           '<img src="inc/images/download.png">' +
         '</a> ' +
-        title +
-        '<br>' + exif;
+        title
       }});
       $(".iframe").colorbox({rel:'gallery',iframe:true, width:"95%", height:"95%", title: function(){
         var url = $(this).attr('orig-file');
@@ -209,7 +208,7 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
             $exif->setFile($value);
 
             echo '
-            <a href="' . $mid . '" class="gallery" orig-file="' . $value . '" exif="' . $exif->toString() . '" title=" ' . $exif->getComment() . ' (' . $key . ')">
+            <a href="' . $mid . '" class="gallery" orig-file="' . $value . '" title=" ' . $exif->toString() . '">
               <div class="item" caption="' . $key . '">
                 <div class="icon" style="background-image: url(' . str_replace(' ','\ ',$thumb) . ')">
                 </div>
