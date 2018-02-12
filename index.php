@@ -199,8 +199,8 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
             if (!file_exists($mid) && ENABLE_MID_IMAGES) {
               $mid = $value;
             }
-            $exif_ifd0 = read_exif_data($value, 'IFD0');
-            $exif_exif = read_exif_data($value, 'EXIF');
+            $exif_ifd0 = exif_read_data($value, 'IFD0');
+            $exif_exif = exif_read_data($value, 'EXIF');
             $exifData = '';
             if (@array_key_exists('Make', $exif_ifd0)) {$exifData .= $exif_ifd0['Make'] . ' ';}
             if (@array_key_exists('Model', $exif_ifd0)) {$exifData .= $exif_ifd0['Model'] . ' ';}
