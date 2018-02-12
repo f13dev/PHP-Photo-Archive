@@ -4,6 +4,7 @@ require_once('inc/settings.php');
 // Load utility classes
 require_once('inc/class/dir.class.php');
 require_once('inc/class/fileUtility.class.php');
+require_once('inc/class/exif.class.php');
 // Load the language file
 require_once('inc/lang/' . SITE_LANG . '.lang.php');
 
@@ -23,7 +24,9 @@ catch (Exception $e)
   exit();
 }
 
+// Create instances of utility classes
 $fileUtility = new FileUtility();
+$exif = new Exif();
 
 $fileCount = $theDir->getFileCount(); // Get the number of files
 $numPages = ceil($fileCount / FILES_PER_PAGE); // Get the number of pages
@@ -49,10 +52,12 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
       $(".gallery").colorbox({rel:'gallery',maxWidth:'95%',maxHeight:'95%',title: function(){
         var url = $(this).attr('orig-file');
         var title = $(this).attr('title');
+        var exif = $(this).attr('exif');
         return '<a download href="' + url + '" target="_blank">' +
           '<img src="inc/images/download.png">' +
         '</a> ' +
-        title;
+        title +
+        '<br>' + exif;
       }});
       $(".iframe").colorbox({rel:'gallery',iframe:true, width:"95%", height:"95%", title: function(){
         var url = $(this).attr('orig-file');
@@ -199,19 +204,12 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
             if (!file_exists($mid) && ENABLE_MID_IMAGES) {
               $mid = $value;
             }
-            $exif_ifd0 = exif_read_data($value, 'IFD0');
-            $exif_exif = exif_read_data($value, 'EXIF');
-            $exifData = '';
-            if (@array_key_exists('Make', $exif_ifd0)) {$exifData .= $exif_ifd0['Make'] . ' ';}
-            if (@array_key_exists('Model', $exif_ifd0)) {$exifData .= $exif_ifd0['Model'] . ' ';}
-            $exifData .= '(';
-            if (@array_key_exists('ExposureTime', $exif_ifd0)) {$exifData .= $exif_ifd0['ExposureTime'] . 'second ';}
-            if (@array_key_exists('ApertureFNumber', $exif_ifd0['COMPUTED'])) {$exifData .= $exif_ifd0['COMPUTED']['ApertureFNumber'] . ' ';}
-            if (@array_key_exists('ISOSpeedRatings', $exif_exif)) {$exifData .= 'ISO' . $exif_exif['ISOSpeedRatings'];}
-            $exifData .= ') ';
-            if (@array_key_exists('DateTime', $exif_ifd0)) {$exifData .= 'Date: ' . $exif_ifd0['DateTime'];}
+
+            // Set the exif data
+            $exif->setFile($value);
+
             echo '
-            <a href="' . $mid . '" class="gallery" orig-file="' . $value . '" title=" ' . $key . '<br>' . $exifData . '">
+            <a href="' . $mid . '" class="gallery" orig-file="' . $value . '" exif="' . $exif->toString() . '" title=" ' . $exif->getComment() . ' (' . $key . ')">
               <div class="item" caption="' . $key . '">
                 <div class="icon" style="background-image: url(' . str_replace(' ','\ ',$thumb) . ')">
                 </div>
@@ -223,7 +221,7 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
         {
           $value = str_replace(" ","+",$value);
             echo '
-            <a href="inc/video.php?file=' . $value . '&ext=' . $ext . '" class="iframe" orig-file="' . $value . '" title=" ' . $key . '" >
+            <a href="inc/video.php?file=' . $value . '&ext=' . $ext . '" class="iframe" orig-file="' . $value . '" title="' . $key . '" >
               <div class="item" caption="' . $key . '">
                 <div class="icon video fixed"';
                   if ($fileUtility->thumbExistsVideo($value))
