@@ -52,7 +52,7 @@ define('CREATE_THUMBS_ON_LOAD', true); // Can create excessively slow page loads
 /**
  * Pagination
  */
-define('FILES_PER_PAGE', 50); // Does not include navigation items
+define('FILES_PER_PAGE', 100); // Does not include navigation items
 
 /**
  * Cron log file name

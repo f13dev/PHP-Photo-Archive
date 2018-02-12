@@ -94,6 +94,27 @@ footer a:hover {
   max-width: <?php echo THUMB_MAX_WIDTH; ?>px;
   max-height: <?php echo THUMB_MAX_HEIGHT; ?>px;
 }
+.info {
+  display: none;
+  position: fixed;
+  bottom: 2.2em;
+  right: 0;
+  left: 0;
+  background-color: white;
+  border-top: 0.2em solid #000;
+  padding: 1em;
+}
+
+.info > span {
+  display: inline-block;
+  width: 15em;
+  line-height: 1.7em;
+  color: #000;
+}
+
+.gallery:hover .info {
+  display: block;
+}
 
 .item {
   float: left;

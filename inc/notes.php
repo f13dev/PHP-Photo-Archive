@@ -10,7 +10,7 @@ if ($ext == 'txt')
 {
   echo '
   <div style="padding:1em">
-    ' . nl2br(file_get_contents('../' . $file)) . '
+    ' . nl2br(file_get_contents('../' . $file . '')) . '
   </div>
   ';
 }

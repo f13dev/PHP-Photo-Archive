@@ -147,6 +147,7 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
       // Show text file links
       foreach ($theDir->getNotes() as $key => $value)
       {
+        $value = str_replace(" ","+",$value);
         echo '
         <a href="inc/notes.php?file=' . $value . '" class="ajax">
           <div class="item" caption="' . $key . '">
@@ -198,8 +199,19 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
             if (!file_exists($mid) && ENABLE_MID_IMAGES) {
               $mid = $value;
             }
+            $exif_ifd0 = read_exif_data($value, 'IFD0');
+            $exif_exif = read_exif_data($value, 'EXIF');
+            $exifData = '';
+            if (@array_key_exists('Make', $exif_ifd0)) {$exifData .= $exif_ifd0['Make'] . ' ';}
+            if (@array_key_exists('Model', $exif_ifd0)) {$exifData .= $exif_ifd0['Model'] . ' ';}
+            $exifData .= '(';
+            if (@array_key_exists('ExposureTime', $exif_ifd0)) {$exifData .= $exif_ifd0['ExposureTime'] . 'second ';}
+            if (@array_key_exists('ApertureFNumber', $exif_ifd0['COMPUTED'])) {$exifData .= $exif_ifd0['COMPUTED']['ApertureFNumber'] . ' ';}
+            if (@array_key_exists('ISOSpeedRatings', $exif_exif)) {$exifData .= 'ISO' . $exif_exif['ISOSpeedRatings'];}
+            $exifData .= ') ';
+            if (@array_key_exists('DateTime', $exif_ifd0)) {$exifData .= 'Date: ' . $exif_ifd0['DateTime'];}
             echo '
-            <a href="' . $mid . '" class="gallery" orig-file="' . $value . '" title=" ' . $key . '">
+            <a href="' . $mid . '" class="gallery" orig-file="' . $value . '" title=" ' . $key . '<br>' . $exifData . '">
               <div class="item" caption="' . $key . '">
                 <div class="icon" style="background-image: url(' . str_replace(' ','\ ',$thumb) . ')">
                 </div>
@@ -209,7 +221,7 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
         }
         elseif ($ext == 'mp4' || $ext == 'webm' || $ext == 'ogg')
         {
-
+          $value = str_replace(" ","+",$value);
             echo '
             <a href="inc/video.php?file=' . $value . '&ext=' . $ext . '" class="iframe" orig-file="' . $value . '" title=" ' . $key . '" >
               <div class="item" caption="' . $key . '">
@@ -228,6 +240,8 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
         }
       }
       ?>
+
+
     </section>
   </main>
 
