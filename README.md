@@ -151,6 +151,19 @@ define('CRON_LOG', cron.log);
 
 This sets the filename for the log file used by cron relative to the gallery script.
 
+#### Enable exif editing
+```php
+define('ENABLE_EDIT',false);
+```
+
+Setting this option to true enables visitors to update the exif comment tag to add a description to images. At present exif editing is in experimental phases and may not work in all instances.
+
+Things to consider:
+* Setting to true allows anybody to edit the exif data (password protection may be added at a later date), it is therefor recommended to only enable this option on password protected personal servers.
+* Images must be under the ownership of 'www-data', or the appropriate group for exif editing to work.
+* The imagick PHP extension must be installed and activated for this to work.
+* It may be easier and more secure to edit the exif comment tag on your computer before uploading.
+
 ### Managing archive maintenance via CRON
 #### How to write a CRON command
 In order to enable automatic maintenance via CRON you will need to create a cron job to run at your specified frequency.
