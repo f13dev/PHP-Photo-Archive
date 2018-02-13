@@ -47,16 +47,30 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script src="inc/colorbox/jquery.colorbox.js"></script>
   <script>
+    function editpopup(url) {
+      newwindow=window.open(url,'Edit','height=500,width=500');
+      if (window.focus) {newwindow.focus()}
+      return false;
+    }
     $(document).ready(function(){
       //Set up colorbox
       $(".gallery").colorbox({rel:'gallery',maxWidth:'95%',maxHeight:'95%',title: function(){
         var url = $(this).attr('orig-file');
         var title = $(this).attr('title');
-        var exif = $(this).attr('exif');
+        <?php if (ENABLE_EDIT) { ?>
+        var edit = '<a href="edit.php?file=' + url + '" onclick="return editpopup(\'edit.php?file=' + url + '\')">' +
+          '<img src="inc/images/edit.png">' +
+          '</a>';
+        <?php } else { ?>
+        var edit = '';
+        <?php } ?>
         return '<a download href="' + url + '" target="_blank">' +
           '<img src="inc/images/download.png">' +
         '</a> ' +
+        edit +
+
         title
+        ;
       }});
       $(".iframe").colorbox({rel:'gallery',iframe:true, width:"95%", height:"95%", title: function(){
         var url = $(this).attr('orig-file');
@@ -165,81 +179,81 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
       }
       ?>
     </section>
-    <section id="imageBrowser">
-      <?php
-      // Check if thumbs are to be created on load
-      if (CREATE_THUMBS_ON_LOAD) {
-        if ($fileUtility->createThumbDir($theDir->getDir()))
-        {
-          $thumbsDirExists = true;
+      <section id="imageBrowser">
+        <?php
+        // Check if thumbs are to be created on load
+        if (CREATE_THUMBS_ON_LOAD) {
+          if ($fileUtility->createThumbDir($theDir->getDir()))
+          {
+            $thumbsDirExists = true;
+          }
+          else
+          {
+            $thumbsDirExists = false;
+          }
         }
-        else
+
+
+        foreach (array_slice($theDir->getFiles(), $start, FILES_PER_PAGE) as $key => $value)
         {
-          $thumbsDirExists = false;
+          $ext = $fileUtility->getExtension($value);
+          if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'gif' || $ext == 'tiff')
+          {
+
+            // Process images
+              if (CREATE_THUMBS_ON_LOAD && ($thumbsDirExists || $thumbsDirExists == null))
+              {
+                $fileUtility->createThumb($value);
+              }
+
+              $thumb = str_replace(ARCHIVE_MAIN, ARCHIVE_THUMBS, $value);
+              $mid = str_replace(ARCHIVE_MAIN, ARCHIVE_MID, $value);
+
+              // If thumb doesn't exist, use full image
+              if (!file_exists($thumb)) {
+                $thumb = $value;
+              }
+              // If mid doesn't exists, use full image
+              if (!file_exists($mid) && ENABLE_MID_IMAGES) {
+                $mid = $value;
+              }
+
+              // Set the exif data
+              $exif->setFile($value);
+
+                echo '
+                <a href="' . $mid . '" class="gallery" orig-file="' . $value . '" title=" ' . $exif->toString() . '">
+                  <div class="item" caption="' . $key . '">
+                    <div class="icon" style="background-image: url(' . str_replace(' ','\ ',$thumb) . ')">
+                    </div>
+                    <span>' . $key . '</span>
+                  </div>
+                </a>';
+          }
+          elseif ($ext == 'mp4' || $ext == 'webm' || $ext == 'ogg')
+          {
+              $value = str_replace(" ","+",$value);
+                echo '
+                <a href="inc/video.php?file=' . $value . '&ext=' . $ext . '" class="iframe" orig-file="' . $value . '" title="' . $key . '" >
+                  <div class="item" caption="' . $key . '">
+                    <div class="icon video fixed"';
+                      if ($fileUtility->thumbExistsVideo($value))
+                      {
+                        echo ' style="background-image: url(' . str_replace(' ','\ ',$fileUtility->getVideoThumbName($value)) . ')" ';
+                      }
+                    echo '>
+                    </div>
+                    <span>' . $key . '</span>
+                  </div>
+                </a>
+                ';
+
+          }
         }
-      }
+        ?>
 
 
-      foreach (array_slice($theDir->getFiles(), $start, FILES_PER_PAGE) as $key => $value)
-      {
-        $ext = $fileUtility->getExtension($value);
-        if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png' || $ext == 'gif' || $ext == 'tiff')
-        {
-
-          // Process images
-            if (CREATE_THUMBS_ON_LOAD && ($thumbsDirExists || $thumbsDirExists == null))
-            {
-              $fileUtility->createThumb($value);
-            }
-
-            $thumb = str_replace(ARCHIVE_MAIN, ARCHIVE_THUMBS, $value);
-            $mid = str_replace(ARCHIVE_MAIN, ARCHIVE_MID, $value);
-
-            // If thumb doesn't exist, use full image
-            if (!file_exists($thumb)) {
-              $thumb = $value;
-            }
-            // If mid doesn't exists, use full image
-            if (!file_exists($mid) && ENABLE_MID_IMAGES) {
-              $mid = $value;
-            }
-
-            // Set the exif data
-            $exif->setFile($value);
-
-            echo '
-            <a href="' . $mid . '" class="gallery" orig-file="' . $value . '" title=" ' . $exif->toString() . '">
-              <div class="item" caption="' . $key . '">
-                <div class="icon" style="background-image: url(' . str_replace(' ','\ ',$thumb) . ')">
-                </div>
-                <span>' . $key . '</span>
-              </div>
-            </a>';
-        }
-        elseif ($ext == 'mp4' || $ext == 'webm' || $ext == 'ogg')
-        {
-          $value = str_replace(" ","+",$value);
-            echo '
-            <a href="inc/video.php?file=' . $value . '&ext=' . $ext . '" class="iframe" orig-file="' . $value . '" title="' . $key . '" >
-              <div class="item" caption="' . $key . '">
-                <div class="icon video fixed"';
-                  if ($fileUtility->thumbExistsVideo($value))
-                  {
-                    echo ' style="background-image: url(' . str_replace(' ','\ ',$fileUtility->getVideoThumbName($value)) . ')" ';
-                  }
-                echo '>
-                </div>
-                <span>' . $key . '</span>
-              </div>
-            </a>
-            ';
-
-        }
-      }
-      ?>
-
-
-    </section>
+      </section>
   </main>
 
   <footer>

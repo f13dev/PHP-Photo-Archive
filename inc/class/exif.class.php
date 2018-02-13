@@ -93,6 +93,25 @@ class Exif
     return end($file);
   }
 
+  function setComment($aComment) {
+    if (!extension_loaded('imagick')) {
+      // imagick isn't installed, return false
+      return false;
+    }
+    else {
+      // Set the comment
+      $im = new imagick($this->file);
+      $im->comment($aComment);
+      // Check the comment stored.
+      if ($im->getImageProperty("comment") == $aComment) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+  }
+
   function toString() {
     // Create an empty string
     $string .= '';

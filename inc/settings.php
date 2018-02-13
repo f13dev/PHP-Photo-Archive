@@ -58,3 +58,10 @@ define('FILES_PER_PAGE', 100); // Does not include navigation items
  * Cron log file name
  */
 define('CRON_LOG', 'cron.log'); // The name of the log file
+
+/**
+ * Enable edit
+ * This allows ANY visitor to change exif data, it is only recommended to set this to
+ * true on secured home servers. Set to false on public servers!
+ */
+define('ENABLE_EDIT',false);
