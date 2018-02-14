@@ -17,11 +17,15 @@ if (isset($_GET['comment'])) {
 } else {
   $comment = '';
 }
-
 // Check file exists
 if (!file_exists($file)) {
   echo 'The selected file cannot be found.';
   exit();
+}
+if (file_exists(str_replace(ARCHIVE_MAIN, ARCHIVE_THUMBS, $file))) {
+  $thumb = str_replace(ARCHIVE_MAIN, ARCHIVE_THUMBS, $file);
+} else {
+  $thumb = $file;
 }
 
 // Require exif class
@@ -67,7 +71,7 @@ $exif = new Exif();
   <?php
 
    ?>
-<img src="<?php echo $file; ?>" style="max-width:<?php echo THUMB_MAX_WIDTH *2; ?>px; max-height:<?php echo THUMB_MAX_HEIGHT *2; ?>px;">
+<img src="<?php echo $thumb; ?>" style="max-width:<?php echo THUMB_MAX_WIDTH *2; ?>px; max-height:<?php echo THUMB_MAX_HEIGHT *2; ?>px;">
 <?php
 if (isset($_GET['comment'])) {
   $exif->setFile($file);
