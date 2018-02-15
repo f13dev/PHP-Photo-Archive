@@ -58,13 +58,13 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
         var url = $(this).attr('orig-file');
         var title = $(this).attr('title');
         <?php if (ENABLE_EDIT) { ?>
-        var edit = '<a href="edit.php?file=' + url + '" onclick="return editpopup(\'edit.php?file=' + url + '\')">' +
+        var edit = '<a href="edit.php?file=' + url + '" onclick="return editpopup(\'edit.php?file=' + url + '\')" title="<?php echo LANG_EDIT; ?>">' +
           '<img src="inc/images/edit.png">' +
           '</a>';
         <?php } else { ?>
         var edit = '';
         <?php } ?>
-        return '<a download href="' + url + '" target="_blank">' +
+        return '<a download href="' + url + '" target="_blank" title="<?php echo LANG_DOWNLOAD; ?>">' +
           '<img src="inc/images/download.png">' +
         '</a> ' +
         edit +
@@ -76,18 +76,11 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
         var url = $(this).attr('orig-file');
         var title = $(this).attr('title');
         return '<a download href="' + url + '" target="_blank">' +
-          '<img src="inc/images/download.png">' +
+          '<img src="inc/images/download.png" title="<?php echo LANG_DOWNLOAD; ?>">' +
         '</a> ' +
         title;
       }});
       $(".ajax").colorbox({width:'90%', height:'90%'});
-      $(".callbacks").colorbox({
-        onOpen:function(){ alert('onOpen: colorbox is about to open'); },
-        onLoad:function(){ alert('onLoad: colorbox has started to load the targeted content'); },
-        onComplete:function(){ alert('onComplete: colorbox has displayed the loaded content'); },
-        onCleanup:function(){ alert('onCleanup: colorbox has begun the close process'); },
-        onClosed:function(){ alert('onClosed: colorbox has completely closed'); }
-      });
     });
   </script>
 </head>

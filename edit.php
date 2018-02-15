@@ -2,14 +2,14 @@
 // Requre settings
 require_once('inc/settings.php');
 if (!ENABLE_EDIT) {
-  echo 'Editing is disabled.';
+  echo LANG_EDIT_DISABLED;
   exit();
 }
 // Check file has been set
 if (isset($_GET['file'])) {
   $file = $_GET['file'];
 } else {
-  echo 'No file has been set.';
+  echo LANG_NO_FILE;
   exit();
 }
 if (isset($_GET['comment'])) {
@@ -19,7 +19,7 @@ if (isset($_GET['comment'])) {
 }
 // Check file exists
 if (!file_exists($file)) {
-  echo 'The selected file cannot be found.';
+  echo LANG_FILE_NOT_FOUND;
   exit();
 }
 if (file_exists(str_replace(ARCHIVE_MAIN, ARCHIVE_THUMBS, $file))) {
@@ -28,6 +28,8 @@ if (file_exists(str_replace(ARCHIVE_MAIN, ARCHIVE_THUMBS, $file))) {
   $thumb = $file;
 }
 
+// Require lang file
+require_once('inc/lang/' . SITE_LANG . '.lang.php');
 // Require exif class
 require_once('inc/class/exif.class.php');
 // Set up exif object
@@ -37,7 +39,7 @@ $exif = new Exif();
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Edit: <?php echo $file; ?></title>
+  <title><?php echo LANG_EDIT . ': ' . $file; ?></title>
   <style type="text/css">
     body {
       background-color: black;
@@ -79,10 +81,10 @@ if (isset($_GET['comment'])) {
   shell_exec('convert ' . $shellFile . ' -set comment "' . $comment . '" ' . $shellFile);
   $exif->setFile($file);
   if ($exif->getComment() == $comment) {
-    echo '<span>Updated successfully.</span>';
+    echo '<span>' . LANG_UPDATE_SUCCESS . '</span>';
   }
   else {
-    echo '<span>Error updating.</span>';
+    echo '<span>' . LANG_UPDATE_FAIL . '</span>';
   }
 }
 $exif->setFile($file);
@@ -90,7 +92,7 @@ $exif->setFile($file);
 <form action="edit.php">
   <input type="hidden" name="file" value="<?php echo $file; ?>">
   <input type="text" name="comment" value="<?php echo $exif->getComment(); ?>">
-  <button type="submit" value="Submit">Submit</button><button type="button" onclick="window.close();">Close</button>
+  <button type="submit" value="Submit"><?php echo LANG_SUBMIT; ?></button><button type="button" onclick="window.close();"><?php echo LANG_CLOSE; ?></button>
 </form>
 
 </body>
