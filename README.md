@@ -46,6 +46,11 @@ Any directories and/or files within this location can form your archive.
 
 ### Adding images and videos
 At present PHP Photo Archive accepts the following image formats:
+```
+GIF, JPG (including JPEG), PNG, TIFF
+```
+
+With the following limitations imposed by popular web browsers:
 
 Format | Chrome | Firefox | Internet Explorer | Opera | Safari
 -------|--------|---------|-------------------|-------|-------
@@ -54,7 +59,12 @@ JPG | YES | YES | YES | YES | YES
 PNG | YES | YES | YES | YES | YES
 TIFF | NO | NO | YES | NO | YES
 
-And the following video formats
+And the following video formats:
+```
+MP4, OGG, WEBM
+```
+
+With the following limitations imposed by popular web browsers:
 
 Format | Chrome | Firefox | Internet Explorer | Opera | Safari
 -------|--------|---------|-------------------|-------|-------
