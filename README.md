@@ -32,6 +32,8 @@ If you prefer to you can always connect to your web server via SSH and use the f
 git clone https://github.com/f13dev/PHP-Photo-Archive /path/to/install/to
 ```
 
+You will need to ensure that the '''archive/images''', '''archive/mid''' and '''archive/thumbs''' directories and the '''cron.log''' file are writable.
+
 ## Using
 
 ### Creating a gallery
