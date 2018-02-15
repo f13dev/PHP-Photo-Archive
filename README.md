@@ -13,6 +13,7 @@ Photo Archive does not require any form of database. Simply create folders; drag
     1. [Settings](#settings)
     1. [Managing archive maintenance via CRON](#managing-archive-maintenance-via-cron)
 1. [License](#license)
+1. [Credits](#credits)
 
 ## Live demo
 [View the live demo](https://f13dev.com/PHP-Photo-Archive)
@@ -201,4 +202,5 @@ This will open a basic text editor where you can type the cron command to run th
 ## License
 Photo archive - [MIT License](LICENSE)
 
-Colorbox - [MIT License](inc/colorbox/LICENSE)
+## Credits
+Colorbox - [MIT License](inc/colorbox/LICENSE) by [Jacklmoore](https://github.com/jackmoore)
