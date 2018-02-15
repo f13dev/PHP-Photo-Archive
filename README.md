@@ -19,7 +19,7 @@ Photo Archive does not require any form of database. Simply create folders; drag
 
 ## Requirements
 * Apache/Nginx/Other web server
-* PHP v5.4
+* PHP v5.x, PHP 7.x
 * FTP/sFTP/Other file upload access
 * Imagemagick (if thumbnails are required to be generated), PHP-GD can be used, but doesn't support video thumbnails.
 
