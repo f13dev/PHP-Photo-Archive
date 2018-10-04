@@ -1,9 +1,4 @@
 <?php
-// Error checking
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 // Load the settings file
 require_once('inc/settings.php');
 // Load utility classes
@@ -189,6 +184,17 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
           {
             $thumbsDirExists = false;
           }
+
+          // Check if mid files are to be created
+          if (CREATE_THUMBS_ON_LOAD && ENABLE_MID_IMAGES) {
+            if ($fileUtility->createThumbDir($theDir->getDir(), 'mid')) {
+              $midDirExists = true;
+            }
+            else
+            {
+              $midDirExists = false;
+            }
+          }
         }
 
 
@@ -202,6 +208,10 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
               if (CREATE_THUMBS_ON_LOAD && ($thumbsDirExists || $thumbsDirExists == null))
               {
                 $fileUtility->createThumb($value, 'thumb');
+              }
+
+              if (CREATE_THUMBS_ON_LOAD && ENABLE_MID_IMAGES && ($midDirExists || $midDirExists == null)) {
+                $fileUtility->createThumb($value, 'mid');
               }
 
               $thumb = str_replace(ARCHIVE_MAIN, ARCHIVE_THUMBS, $value);
