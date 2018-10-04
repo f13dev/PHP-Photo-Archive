@@ -114,7 +114,7 @@ class Exif
 
   function toString() {
     // Create an empty string
-    $string .= '';
+    $string = '';
     // Add the comment if it exists
     if (trim($this->getComment() != '')) {
       $string .= $this->getComment() . ' - ';

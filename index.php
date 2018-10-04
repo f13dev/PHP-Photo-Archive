@@ -181,7 +181,7 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
         <?php
         // Check if thumbs are to be created on load
         if (CREATE_THUMBS_ON_LOAD) {
-          if ($fileUtility->createThumbDir($theDir->getDir()))
+          if ($fileUtility->createThumbDir($theDir->getDir(), 'thumb'))
           {
             $thumbsDirExists = true;
           }
@@ -201,7 +201,7 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
             // Process images
               if (CREATE_THUMBS_ON_LOAD && ($thumbsDirExists || $thumbsDirExists == null))
               {
-                $fileUtility->createThumb($value);
+                $fileUtility->createThumb($value, 'thumb');
               }
 
               $thumb = str_replace(ARCHIVE_MAIN, ARCHIVE_THUMBS, $value);
