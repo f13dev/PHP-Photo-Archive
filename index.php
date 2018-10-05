@@ -218,11 +218,11 @@ if ($end > $fileCount) { $end = $fileCount; } // Check end file is not more than
               $mid = str_replace(ARCHIVE_MAIN, ARCHIVE_MID, $value);
 
               // If thumb doesn't exist, use full image
-              if (!file_exists($thumb)) {
+              if (!file_exists(urldecode($thumb))) {
                 $thumb = $value;
               }
               // If mid doesn't exists, use full image
-              if (!file_exists($mid) && ENABLE_MID_IMAGES) {
+              if (!file_exists(urldecode($mid)) && ENABLE_MID_IMAGES) {
                 $mid = $value;
               }
 
