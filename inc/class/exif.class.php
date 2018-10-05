@@ -7,8 +7,8 @@ class Exif
 
   function setFile($aFile) {
     $this->file = $aFile;
-    $this->ifd0 = exif_read_data($aFile, 'IFD0');
-    $this->exif = exif_read_data($aFile, 'EXIF');
+    $this->ifd0 = @exif_read_data($aFile, 'IFD0');
+    $this->exif = @exif_read_data($aFile, 'EXIF');
   }
 
   function getMake() {
@@ -78,7 +78,8 @@ class Exif
   }
 
   function getDimensions() {
-    list($width, $height, $type, $attr) = getimagesize($this->file);
+    $imgURL = urldecode($this->file);
+    list($width, $height, $type, $attr) = getimagesize(urldecode($this->file));
     $mp = round(($width * $height) / 1000000, 1);
     $dimensions = array(
       "width" => $width,
